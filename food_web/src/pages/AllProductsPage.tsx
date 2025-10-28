@@ -40,7 +40,7 @@ const AllProductsPage: React.FC = () => {
     setAddedIds(prev => new Set(prev).add(p.id));
     setTimeout(() => {
       setAddedIds(prev => { const n = new Set(prev); n.delete(p.id); return n; });
-    }, 1500);
+    }, 1200);
   };
 
   if (loading) {
@@ -50,6 +50,7 @@ const AllProductsPage: React.FC = () => {
           <CircleSpinner size={60} color="#3B82F6" />
           <p className="mt-4 text-gray-600">Ürünler yükleniyor...</p>
         </div>
+        
       </div>
     );
   }

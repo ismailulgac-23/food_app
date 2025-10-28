@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { CircleSpinner } from 'react-spinners-kit';
+import { useCart } from '../contexts/CartContext';
 
 interface PopularProductsProps {
   products: any[];
@@ -8,6 +9,7 @@ interface PopularProductsProps {
 }
 
 const PopularProducts: React.FC<PopularProductsProps> = ({ products, loading = false }) => {
+  const { addToCart } = useCart();
   // Static products for fallback
   const staticProducts = [
     {
@@ -49,10 +51,8 @@ const PopularProducts: React.FC<PopularProductsProps> = ({ products, loading = f
   return (
     <div className="space-y-6">
       {displayProducts.map((product) => (
-        <Link
-          key={product.id}
-          to={`/product/${product.id}`}
-          className="group flex items-center bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6"
+        <div
+          className="group flex items-center bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 md:p-6 p-2"
         >
           <div className="flex-shrink-0 w-20 h-20 bg-gray-50 rounded-lg relative flex items-center justify-center overflow-hidden">
             {product.image || product.imageUrl ? (
@@ -76,14 +76,16 @@ const PopularProducts: React.FC<PopularProductsProps> = ({ products, loading = f
               <span className="text-xl font-bold text-primary">
                 ₺{product.price}
               </span>
-              <button className="bg-primary text-white p-2 rounded-full hover:bg-primary-dark transition-colors duration-200">
+              <button   
+              onClick={() => addToCart(product)}
+              className="bg-primary text-white p-2 rounded-full hover:bg-primary-dark transition-colors duration-200">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                 </svg>
               </button>
             </div>
           </div>
-        </Link>
+        </div>
       ))}
     </div>
   );

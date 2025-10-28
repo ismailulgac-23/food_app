@@ -127,25 +127,48 @@ const Header: React.FC = () => {
               </Link>
               
               <Link
-                to="/cart"
+                to="/cart" 
                 className="flex items-center space-x-2 px-6 py-5 text-text-primary hover:bg-white hover:text-primary transition-all duration-300 rounded-2xl text-xl font-semibold relative"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <Icon icon="mdi:cart" className="w-8 h-8" />
                 <span className="font-semibold text-lg md:text-xl">Sepet</span>
-                <div className="ml-auto bg-primary text-white text-sm rounded-full w-7 h-7 flex items-center justify-center font-bold shadow">
-                  3
-                </div>
+                {getTotalItems() > 0 && (
+                  <div className="ml-auto bg-primary text-white text-sm rounded-full w-7 h-7 flex items-center justify-center font-bold shadow">
+                    {getTotalItems()}
+                  </div>
+                )}
               </Link>
-              
+
               <Link
-                to="/profile"
-                className="flex items-center space-x-2 px-6 py-5 text-text-primary hover:bg-white hover:text-primary transition-all duration-300 rounded-2xl text-xl font-semibold"
+                to="/all" 
+                className="flex items-center space-x-2 px-6 py-5 text-text-primary hover:bg-white hover:text-primary transition-all duration-300 rounded-2xl text-xl font-semibold relative"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <Icon icon="mdi:account" className="w-8 h-8" />
-                <span className="font-semibold text-lg md:text-xl">Profil</span>
+                <Icon icon="mdi:tag" className="w-8 h-8" />
+                <span className="font-semibold text-lg md:text-xl">Tüm Ürünler</span>
+                
               </Link>
+              
+              {isAuthenticated ? (
+                <Link
+                  to="/profile"
+                  className="flex items-center space-x-2 px-6 py-5 text-text-primary hover:bg-white hover:text-primary transition-all duration-300 rounded-2xl text-xl font-semibold"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Icon icon="mdi:account" className="w-8 h-8" />
+                  <span className="font-semibold text-lg md:text-xl">Profil</span>
+                </Link>
+              ) : (
+                <Link
+                  to="/login"
+                  className="flex items-center space-x-2 px-6 py-5 text-text-primary hover:bg-white hover:text-primary transition-all duration-300 rounded-2xl text-xl font-semibold"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Icon icon="mdi:account" className="w-8 h-8" />
+                  <span className="font-semibold text-lg md:text-xl">Giriş / Kayıt</span>
+                </Link>
+              )}
             </div>
           </div>
         )}

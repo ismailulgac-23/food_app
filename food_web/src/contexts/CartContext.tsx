@@ -1,4 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Icon } from '@iconify/react';
+import { toast } from 'react-hot-toast';
 
 interface CartContextType {
   cartItems: any[];
@@ -22,6 +25,7 @@ export const useCart = () => {
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cartItems, setCartItems] = useState<any[]>([]);
+  const [popup, setPopup] = useState<{ name: string } | null>(null);
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -61,6 +65,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }];
       }
     });
+    setPopup({ name: product.name });
+    setTimeout(() => setPopup(null), 1200);
   };
 
   const removeFromCart = (productId: string) => {
@@ -105,6 +111,22 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   return (
     <CartContext.Provider value={value}>
       {children}
+      <AnimatePresence>
+        {popup && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.98 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+            className="fixed top-6 right-1/2 left-1/2 transform -translate-x-1/2 z-[60] bg-white border border-gray-200 shadow-xl rounded-2xl px-4 py-3 w-[90%] mx-auto"
+          >
+            <div className="flex items-center gap-3 w-full">
+              <Icon icon="mdi:check-circle" className="w-5 h-5 text-green-500" />
+              <div className="text-sm"><span className="font-semibold">{popup.name}</span> sepete eklendi +1</div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </CartContext.Provider>
   );
 };

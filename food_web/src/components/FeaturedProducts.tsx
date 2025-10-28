@@ -79,7 +79,7 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products, loading =
           to={`/product/${product.id}`}
           className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
         >
-          <div className="relative w-full h-48 flex items-center justify-center bg-gray-50">
+          <div className={`relative w-full flex items-center justify-center bg-gray-50 ${product.image || product.imageUrl ? 'md:h-48' : 'h-48'}`}>
             {product.image || product.imageUrl ? (
               <img
                 src={product.image || product.imageUrl}
@@ -115,7 +115,7 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products, loading =
                   </span>
                 )}
               </div>
-              <button 
+              <button
                 onClick={(e) => {
                   e.preventDefault();
                   addToCart(product);
