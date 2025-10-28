@@ -31,7 +31,7 @@ async function main() {
     console.warn('⚠️ urunler.json not found at', filePath);
   } else {
     const raw = fs.readFileSync(filePath, 'utf-8');
-    const items = JSON.parse(raw) as Array<{ id?: string; title: string; price: number; isActive?: boolean }>;
+    const items = JSON.parse(raw) as Array<{ id?: string; title: string; price: number; isActive?: boolean; imageUrl?: string }>;
     let count = 0;
     for (const it of items) {
       try {
@@ -41,6 +41,7 @@ async function main() {
             price: Number(it.price) || 0,
             isActive: it.isActive !== false,
             categoryId: category.id,
+            imageUrl: it.imageUrl || null,
           }
         });
         count++;
