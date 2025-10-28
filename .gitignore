@@ -1,0 +1,30 @@
+# Minimal per-project ignores
+
+# food-api (Node API)
+food-api/node_modules/
+food-api/dist
+food-api/build
+food-api/yarn.lock
+food-api/package-lock.json
+food-api/pnpm-lock.yaml
+
+# food-admin (Vite/React Admin)
+food-admin/node_modules/
+food-admin/dist
+food-admin/build
+food-admin/yarn.lock
+food-admin/package-lock.json
+food-admin/pnpm-lock.yaml
+
+# food_web (Vite/React Web)
+food_web/node_modules/
+food_web/dist
+food_web/build
+food_web/yarn.lock
+food_web/package-lock.json
+food_web/pnpm-lock.yaml
+
+# food_app (Flutter)
+food_app/build/
+food_app/.dart_tool/
+food_app/pubspec.lock

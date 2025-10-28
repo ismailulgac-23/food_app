@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: food_postgres
+    environment:
+      POSTGRES_DB: food_db
+      POSTGRES_USER: food_user
+      POSTGRES_PASSWORD: food_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - food_network
+
+  adminer:
+    image: adminer:4.8.1
+    container_name: food_adminer
+    ports:
+      - "8080:8080"
+    networks:
+      - food_network
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
+
+networks:
+  food_network:
+    driver: bridge
