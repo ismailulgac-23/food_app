@@ -36,7 +36,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { phone, password, username } = req.body;
-    if ((!phone && !username) || !password) {
+    if (!username || !password) {
       return res.status(400).json({ success: false, error: 'Phone/username and password required' });
     }
     let user = null as any;
