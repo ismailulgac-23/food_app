@@ -10,7 +10,7 @@ import Categories from "./pages/Categories";
 import Products from "./pages/Products";
 import Orders from "./pages/Orders";
 
-function ProtectedRoute({ children }: { children: JSX.Element }) {
+function ProtectedRoute({ children }: any) {
   const [loading, setLoading] = useState(true);
   const [ok, setOk] = useState(false);
   useEffect(() => {
