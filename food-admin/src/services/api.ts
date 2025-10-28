@@ -31,6 +31,16 @@ api.interceptors.response.use(
   }
 );
 
+// Attach auth token for admin
+api.interceptors.request.use((config: any) => {
+  const token = localStorage.getItem('admin_token');
+  if (token) {
+    config.headers = config.headers || {};
+    config.headers['Authorization'] = `Bearer ${token}`;
+  }
+  return config;
+});
+
 // Category API
 export const categoryAPI = {
   getAll: () => api.get('/categories'),
@@ -104,6 +114,12 @@ export const uploadAPI = {
 export const dashboardAPI = {
   getStats: () => api.get('/dashboard/stats'),
   getAnalytics: (period?: number) => api.get('/dashboard/analytics', { params: { period } }),
+};
+
+// Auth API
+export const authAPI = {
+  login: (data: { phone?: string; password: string; username?: string }) => api.post('/auth/login', data),
+  me: () => api.get('/auth/me'),
 };
 
 export default api;

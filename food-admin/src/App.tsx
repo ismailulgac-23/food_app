@@ -1,4 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router";
+import { useEffect, useState } from "react";
+import { authAPI } from "./services/api";
 import SignIn from "./pages/AuthPages/SignIn";
 import SignUp from "./pages/AuthPages/SignUp";
 import NotFound from "./pages/OtherPage/NotFound";
@@ -9,6 +11,26 @@ import Categories from "./pages/Categories";
 import Products from "./pages/Products";
 import Orders from "./pages/Orders";
 
+function ProtectedRoute({ children }: { children: JSX.Element }) {
+  const [loading, setLoading] = useState(true);
+  const [ok, setOk] = useState(false);
+  useEffect(() => {
+    const check = async () => {
+      try {
+        await authAPI.me();
+        setOk(true);
+      } catch {
+        setOk(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+    check();
+  }, []);
+  if (loading) return <div className="flex items-center justify-center h-screen">UYMAR MARKET</div>;
+  return ok ? children : <Navigate to="/signin" replace />;
+}
+
 export default function App() {
   return (
     <>
@@ -16,7 +38,7 @@ export default function App() {
         <ScrollToTop />
         <Routes>
           {/* Dashboard Layout */}
-          <Route element={<AppLayout />}>
+          <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
             <Route index path="/" element={<Home />} />
 
             {/* Food Management */}
@@ -28,7 +50,6 @@ export default function App() {
 
           {/* Auth Layout */}
           <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
 
           {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />

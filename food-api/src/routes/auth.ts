@@ -35,12 +35,17 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const { phone, password } = req.body;
-    if (!phone || !password) {
-      return res.status(400).json({ success: false, error: 'Phone and password required' });
+    const { phone, password, username } = req.body;
+    if ((!phone && !username) || !password) {
+      return res.status(400).json({ success: false, error: 'Phone/username and password required' });
     }
-    const normalizedPhone = normalizePhone(phone);
-    const user = await prisma.user.findUnique({ where: { phone: normalizedPhone } });
+    let user = null as any;
+    if (phone) {
+      const normalizedPhone = normalizePhone(phone);
+      user = await prisma.user.findUnique({ where: { phone: normalizedPhone } });
+    } else if (username) {
+      user = await prisma.user.findFirst({ where: { fullName: username } });
+    }
     if (!user) return res.status(400).json({ success: false, error: 'Invalid credentials' });
     const ok = await bcrypt.compare(password, user.passwordHash);
     if (!ok) return res.status(400).json({ success: false, error: 'Invalid credentials' });
