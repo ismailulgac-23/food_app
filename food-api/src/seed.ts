@@ -31,10 +31,12 @@ async function main() {
     console.warn('⚠️ urunler.json not found at', filePath);
   } else {
     const raw = fs.readFileSync(filePath, 'utf-8');
-    const items = JSON.parse(raw) as Array<{ id?: string; title: string; price: number; isActive?: boolean; imageUrl?: string }>;
+    const items: any = JSON.parse(raw);
     let count = 0;
     for (const it of items) {
       try {
+        console.log('it',it.imageUrl);
+        
         await prisma.product.create({
           data: {
             name: it.title,
