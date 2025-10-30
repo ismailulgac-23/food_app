@@ -16,15 +16,17 @@ const AllProductsPage: React.FC = () => {
   const [addedIds, setAddedIds] = useState<Set<string>>(new Set());
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get('search') || '';
+  const categoryId = new URLSearchParams(location.search).get('categoryId') || '';
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
         setError(null);
-        const res: any = await productAPI.getAll({ page, limit: 500, search: searchQuery || undefined });
+        const res: any = await productAPI.getAll({ page, limit: 20, search: searchQuery || undefined, categoryId: categoryId || undefined });
         setProducts(res.data.data || []);
         setPages(res.data.pagination?.pages || 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } catch (e) {
         setError('Ürünler yüklenemedi');
       } finally {
@@ -32,11 +34,10 @@ const AllProductsPage: React.FC = () => {
       }
     };
     fetchProducts();
-  }, [page, searchQuery]);
+  }, [page, searchQuery, categoryId]);
 
   const handleAdd = (p: any) => {
     addToCart(p);
-    toast.success('Sepete eklendi');
     setAddedIds(prev => new Set(prev).add(p.id));
     setTimeout(() => {
       setAddedIds(prev => { const n = new Set(prev); n.delete(p.id); return n; });
@@ -50,7 +51,7 @@ const AllProductsPage: React.FC = () => {
           <CircleSpinner size={60} color="#3B82F6" />
           <p className="mt-4 text-gray-600">Ürünler yükleniyor...</p>
         </div>
-        
+
       </div>
     );
   }
@@ -74,27 +75,47 @@ const AllProductsPage: React.FC = () => {
           <p className="text-text-secondary">Toplam {products.length} ürün</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {products.map((product) => (
-            <div key={product.id} className="bg-white rounded-2xl border border-gray-200 p-4 hover:border-gray-300 transition">
-              <div className="relative aspect-square rounded-xl overflow-hidden bg-gray-50 flex items-center justify-center">
+            <div
+              key={product.id}
+              className="flex flex-col h-full bg-white rounded-2xl border border-gray-200 p-4 hover:border-gray-300 transition"
+            >
+              <div className="relative aspect-square rounded-xl overflow-hidden bg-gray-50 flex items-center justify-center cursor-pointer" onClick={() => window.location.assign(`/product/${product.id}`)}>
                 {product.imageUrl ? (
-                  <img src={product.imageUrl} alt={product.name} className="w-full h-full object-cover" />
+                  <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    className="w-full h-full object-contain"
+                  />
                 ) : (
-                  <span className="text-red-600 font-extrabold tracking-widest">UYMAR</span>
+                  <span className="text-red-600 font-extrabold tracking-widest">
+                    UYMAR
+                  </span>
                 )}
               </div>
-              <div className="mt-4">
-                <h3 className="font-semibold text-text-primary line-clamp-2">{product.name}</h3>
-                <div className="flex items-center justify-between mt-2">
-                  <span className="text-lg font-bold text-text-primary">₺{product.price}</span>
-                  <button
-                    onClick={() => handleAdd(product)}
-                    className={`px-4 py-2 rounded-xl font-semibold text-sm transition ${addedIds.has(product.id) ? 'bg-green-500 text-white' : 'bg-primary text-white hover:bg-primary-dark'}`}
-                  >
-                    {addedIds.has(product.id) ? 'Eklendi' : 'Sepete Ekle'}
-                  </button>
+              <div className="mt-4 flex flex-col flex-1">
+                <h3 className="font-semibold text-text-primary line-clamp-2 min-h-[48px] cursor-pointer" onClick={() => window.location.assign(`/product/${product.id}`)}>{product.name}</h3>
+                <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mt-5">
+                  <div className="flex items-baseline gap-2">
+                    {/* Fake old price for a bit more dramatic effect */}
+                    <span className="text-gray-400 line-through font-bold text-base select-none">
+                      ₺{(parseFloat(product.price) + 9.99).toFixed(2)}
+                    </span>
+                    <span className="text-lg font-extrabold text-red-600 drop-shadow-md bg-red-100 px-2 py-1 rounded-lg">
+                      ₺{parseFloat(product.price).toFixed(2)}
+                    </span>
+                  </div>
                 </div>
+                <button
+                  onClick={() => handleAdd(product)}
+                  className={`mt-4 cursor-pointer w-full md:w-auto px-4 py-2 rounded-xl font-semibold text-sm transition ${addedIds.has(product.id)
+                      ? 'bg-green-500 text-white'
+                      : 'bg-primary text-white hover:bg-primary-dark'
+                    }`}
+                >
+                  {addedIds.has(product.id) ? 'Eklendi' : 'Sepete Ekle'}
+                </button>
               </div>
             </div>
           ))}

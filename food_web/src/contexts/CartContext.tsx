@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
-import { toast } from 'react-hot-toast';
 
 interface CartContextType {
   cartItems: any[];
@@ -118,7 +117,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-            className="fixed top-6 right-1/2 left-1/2 transform -translate-x-1/2 z-[60] bg-white border border-gray-200 shadow-xl rounded-2xl px-4 py-3 w-[90%] mx-auto"
+            className="fixed top-6 right-1/2 left-1/2 transform -translate-x-1/2 z-[60] bg-white border border-gray-200 shadow-xl rounded-2xl px-4 py-3 w-[90%] md:w-[30%] mx-auto"
           >
             <div className="flex items-center gap-3 w-full">
               <Icon icon="mdi:check-circle" className="w-5 h-5 text-green-500" />

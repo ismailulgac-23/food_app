@@ -13,6 +13,7 @@ import ProfilePage from './pages/ProfilePage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { Toaster } from 'react-hot-toast';
+import MobileBottomBar from './components/MobileBottomBar';
 
 
 function App() {
@@ -35,6 +36,8 @@ function App() {
               </Routes>
             </main>
             <Footer />
+            {/* Global mobile bottom bar with exclude list */}
+            <MobileBottomBar excludePaths={[]} />
           </div>
           <Toaster position="bottom-center" toastOptions={{
             success: { className: 'bg-green-500 text-white' },

@@ -48,17 +48,17 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-white rounded-2xl border border-gray-200 p-6">
+      <div className="w-full max-w-md bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
         <h1 className="text-2xl font-bold mb-4">Giriş Yap</h1>
         {error && <div className="mb-3 text-sm text-red-600">{error}</div>}
         <form onSubmit={onSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium mb-1">Telefon</label>
-            <input value={phone} onChange={(e) => onPhoneChange(e.target.value)} placeholder="+90 (555) 555 5555" className="w-full px-4 py-3 border rounded-2xl" />
+            <input value={phone} onChange={(e) => onPhoneChange(e.target.value)} placeholder="+90 (555) 555 5555" className="w-full px-4 py-3 border border-gray-200 bg-gray-50 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary" />
           </div>
           <div>
             <label className="block text-sm font-medium mb-1">Parola</label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-3 border rounded-2xl" />
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-3 border border-gray-200 bg-gray-50 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary" />
           </div>
           <button type="submit" className="w-full bg-primary text-white py-3 rounded-2xl font-bold">Giriş Yap</button>
         </form>

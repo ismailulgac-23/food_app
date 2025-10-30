@@ -2,19 +2,51 @@ import { PrismaClient } from '@prisma/client';
 import path from 'path';
 import fs from 'fs';
 import bcrypt from 'bcryptjs';
-
+import slugify from 'slugify';
 const prisma = new PrismaClient();
 
 async function main() {
   console.log('🌱 Starting seed...');
 
-  // Create only "Diğer" category
-  const category = await prisma.category.upsert({
-    where: { name: 'Diğer', id: "diger" },
-    update: {},
-    create: { name: 'Diğer', id: "diger" }
+  await prisma.orderItem.deleteMany();
+  console.log('✅ Order items deleted');
+
+  await prisma.product.deleteMany();
+  console.log('✅ Products deleted');
+
+  await prisma.category.deleteMany();
+  console.log('✅ Categories deleted');
+
+  
+  
+  await prisma.order.deleteMany();
+  console.log('✅ Orders deleted');
+  await prisma.user.deleteMany();
+  console.log('✅ Users deleted');
+
+  await prisma.category.createMany({
+    data: [
+      { name: "Et ve Tavuk", id: slugify("Et ve Tavuk") },
+      { name: "Meyve ve Sebze", id: slugify("Meyve ve Sebze") },
+      { name: "Kahvaltılıklar", id: slugify("Kahvaltılıklar") },
+      { name: "Süt Ürünleri", id: slugify("Süt Ürünleri") },
+      { name: "Temel Gıda", id: slugify("Temel Gıda") },
+      { name: "Fırın ve Pastane", id: slugify("Fırın ve Pastane") },
+      { name: "Donuk ve Hazır Gıda", id: slugify("Donuk ve Hazır Gıda") },
+      { name: "Dondurma ve Tatlı", id: slugify("Dondurma ve Tatlı") },
+      { name: "Atıştırmalık", id: slugify("Atıştırmalık") },
+      { name: "Su ve İçecekler", id: slugify("Su ve İçecekler") },
+      { name: "Kişisel Bakım", id: slugify("Kişisel Bakım") },
+      { name: "Temizlik Ürünleri", id: slugify("Temizlik Ürünleri") },
+      { name: "Bebek Evreni", id: slugify("Bebek Evreni") },
+      { name: "Evcil Dostlarımız", id: slugify("Evcil Dostlarımız") },
+      { name: "Ev ve Yaşam", id: slugify("Ev ve Yaşam") },
+      { name: "Ofis ve Teknoloji", id: slugify("Ofis ve Teknoloji") },
+      { name: "Diğer", id: slugify("Diğer") },
+    ],
+    skipDuplicates: true
   });
-  console.log('✅ Category created:', category.name);
+  console.log('✅ Categories created');
 
   // Create admin user (username concept mapped to fullName), password: UymarMarket2341
   const adminPasswordHash = await bcrypt.hash('UymarMarket2341', 10);
@@ -35,14 +67,14 @@ async function main() {
     let count = 0;
     for (const it of items) {
       try {
-        console.log('it',it.imageUrl);
-        
+        console.log('it', it.imageUrl);
+
         await prisma.product.create({
           data: {
             name: it.title,
             price: Number(it.price) || 0,
             isActive: it.isActive !== false,
-            categoryId: category.id,
+            categoryId: slugify(it.category) || slugify("Diğer"),
             imageUrl: it.imageUrl || null,
           }
         });

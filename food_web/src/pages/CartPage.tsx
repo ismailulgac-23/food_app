@@ -172,7 +172,7 @@ const CartPage: React.FC = () => {
                           <img
                             src={item.imageUrl}
                             alt={item.name}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-contain"
                           />
                         ) : (
                           <span className="text-red-600 font-extrabold text-[10px] sm:text-xs tracking-widest">UYMAR</span>
@@ -180,7 +180,7 @@ const CartPage: React.FC = () => {
                       </div>
 
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-base sm:text-xl font-bold text-text-primary mb-1 sm:mb-2 line-clamp-2">
+                        <h3 className="text-sm font-bold text-text-primary mb-1 sm:mb-2 line-clamp-2">
                           {item.name}
                         </h3>
                         <div className="flex items-center space-x-2 mb-2 sm:mb-3">

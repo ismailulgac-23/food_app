@@ -105,7 +105,7 @@ const ProductPage: React.FC = () => {
                 <img
                   src={product.imageUrl}
                   alt={product.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               ) : (
                 <span className="text-red-600 font-extrabold text-2xl tracking-widest">UYMAR</span>
@@ -123,7 +123,7 @@ const ProductPage: React.FC = () => {
                     <img
                       src={image}
                       alt={`${product.name} ${index + 1}`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
                   </button>
                 ))}
@@ -175,7 +175,7 @@ const ProductPage: React.FC = () => {
                 <div className="flex items-center bg-grey-100 rounded-xl">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="p-2 hover:bg-grey-200 rounded-l-xl transition-colors duration-200"
+                    className="cursor-pointer p-2 hover:bg-grey-200 rounded-l-xl transition-colors duration-200"
                   >
                     <Icon icon="mdi:minus" className="w-4 h-4 text-text-secondary" />
                   </button>
@@ -184,7 +184,7 @@ const ProductPage: React.FC = () => {
                   </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="p-2 hover:bg-grey-200 rounded-r-xl transition-colors duration-200"
+                    className="cursor-pointer p-2 hover:bg-grey-200 rounded-r-xl transition-colors duration-200"
                   >
                     <Icon icon="mdi:plus" className="w-4 h-4 text-text-secondary" />
                   </button>
@@ -196,23 +196,11 @@ const ProductPage: React.FC = () => {
                   <span className="text-2xl font-bold text-text-primary">{calculateTotalPrice().toFixed(2)}₺</span>
                   <p className="text-text-secondary text-sm">Toplam fiyat</p>
                 </div>
-                <button
-                  onClick={() => setIsFavorite(!isFavorite)}
-                  className={`p-3 rounded-xl transition-colors duration-200 ${isFavorite
-                    ? 'bg-red-50 text-red-500'
-                    : 'bg-grey-100 text-grey-400 hover:bg-red-50 hover:text-red-500'
-                    }`}
-                >
-                  <Icon
-                    icon={isFavorite ? "mdi:heart" : "mdi:heart-outline"}
-                    className="w-6 h-6"
-                  />
-                </button>
               </div>
 
               <button
                 onClick={handleAddToCart}
-                className="w-full py-4 px-6 rounded-2xl font-semibold text-lg transition-all duration-300 bg-primary text-white hover:bg-primary-dark transform hover:scale-105"
+                className="w-full py-4 px-6 rounded-2xl font-semibold text-lg transition-all duration-300 bg-primary text-white hover:bg-primary-dark transform hover:scale-105 cursor-pointer"
               >
                 Sepete Ekle
               </button>
