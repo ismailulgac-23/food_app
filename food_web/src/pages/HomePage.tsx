@@ -61,8 +61,7 @@ const HomePage: React.FC = () => {
               Bölgenize özel fiyatlarla binlerce ürünü dakikalar içinde kapınıza getiriyoruz. Güvenli ödeme, anında destek ve uygun fiyat garantisi.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <button className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-xl font-semibold text-sm sm:text-base">Alışverişe Başla</button>
-              <button className="border border-gray-300 hover:border-gray-400 text-gray-800 px-6 py-3 rounded-xl font-semibold text-sm sm:text-base">Kategorileri Keşfet</button>
+              <Link to="/all" className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-xl font-semibold text-sm sm:text-base">Alışverişe Başla</Link>
             </div>
           </div>
           <div className="order-first lg:order-none">

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import { CircleSpinner } from 'react-spinners-kit';
-import { productAPI } from '../services/api';
+import { categoryAPI, productAPI } from '../services/api';
 import { useLocation } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { toast } from 'react-hot-toast';
 
 const AllProductsPage: React.FC = () => {
   const [products, setProducts] = useState<any[]>([]);
+  const [displayProducts, setDisplayProducts] = useState<any[]>([]);
+  const [categories, setCategories] = useState<Array<{ id: string; name: string }>>([]);
+  const [selectedCats, setSelectedCats] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
@@ -19,12 +22,29 @@ const AllProductsPage: React.FC = () => {
   const categoryId = new URLSearchParams(location.search).get('categoryId') || '';
 
   useEffect(() => {
+    // load categories once
+    (async () => {
+      try {
+        const res: any = await categoryAPI.getAll();
+        setCategories(res.data.data || []);
+      } catch {}
+    })();
+
     const fetchProducts = async () => {
       try {
         setLoading(true);
         setError(null);
-        const res: any = await productAPI.getAll({ page, limit: 20, search: searchQuery || undefined, categoryId: categoryId || undefined });
-        setProducts(res.data.data || []);
+        const effectiveCategoryId = selectedCats.size === 1 ? Array.from(selectedCats)[0] : (categoryId || undefined);
+        const res: any = await productAPI.getAll({ page, limit: 20, search: searchQuery || undefined, categoryId: effectiveCategoryId });
+        const list = res.data.data || [];
+        setProducts(list);
+        if (selectedCats.size > 1) {
+          setDisplayProducts(list.filter((p: any) => selectedCats.has(p.category?.id)));
+        } else if (selectedCats.size === 1) {
+          setDisplayProducts(list);
+        } else {
+          setDisplayProducts(list);
+        }
         setPages(res.data.pagination?.pages || 1);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } catch (e) {
@@ -34,7 +54,17 @@ const AllProductsPage: React.FC = () => {
       }
     };
     fetchProducts();
-  }, [page, searchQuery, categoryId]);
+  }, [page, searchQuery, categoryId, Array.from(selectedCats).join(',')]);
+
+  const toggleCategory = (id: string) => {
+    setSelectedCats(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      return next;
+    });
+  };
+
+  const clearCategories = () => setSelectedCats(new Set());
 
   const handleAdd = (p: any) => {
     addToCart(p);
@@ -72,11 +102,31 @@ const AllProductsPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-text-primary">Tüm Ürünler</h1>
-          <p className="text-text-secondary">Toplam {products.length} ürün</p>
+          <p className="text-text-secondary">Toplam {displayProducts.length} ürün</p>
         </div>
 
+        {/* Category filter chips/cards */}
+        {categories.length > 0 && (
+          <div className="mb-6">
+            <div className="flex flex-wrap gap-2">
+              {categories.map(c => (
+                <button
+                  key={c.id}
+                  onClick={() => toggleCategory(c.id)}
+                  className={`px-4 py-2 rounded-xl border transition shadow-sm ${selectedCats.has(c.id) ? 'bg-primary text-white border-primary shadow-md' : 'bg-white text-gray-700 border-gray-200 hover:border-gray-300'}`}
+                >
+                  {c.name}
+                </button>
+              ))}
+              {selectedCats.size > 0 && (
+                <button onClick={clearCategories} className="ml-2 px-3 py-2 rounded-xl border border-gray-200 text-gray-600 hover:bg-gray-50">Temizle</button>
+              )}
+            </div>
+          </div>
+        )}
+
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {products.map((product) => (
+          {displayProducts.map((product) => (
             <div
               key={product.id}
               className="flex flex-col h-full bg-white rounded-2xl border border-gray-200 p-4 hover:border-gray-300 transition"
