@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 /* const API_BASE_URL = 'https://api.uymarmarket.com.tr/api'; */
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://api.uymarmarket.com.tr";
 const API_BASE_URL = `${BASE_URL}/api`;
 
 export const getImageUrl = (imageUrl: string) => {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 /* const API_BASE_URL = 'https://api.uymarmarket.com.tr/api'; */
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://api.uymarmarket.com.tr";
 const API_BASE_URL = `${BASE_URL}/api`;
 
 const api = axios.create({
@@ -22,7 +22,6 @@ api.interceptors.request.use(
   }
 );
 
-// Response interceptor
 api.interceptors.response.use(
   (response: any) => {
     return response;
@@ -54,31 +53,31 @@ export const categoryAPI = {
 
 // Product API
 export const productAPI = {
-  getAll: (params?: { categoryId?: string; page?: number; limit?: number; search?: string }) => 
+  getAll: (params?: { categoryId?: string; page?: number; limit?: number; search?: string }) =>
     api.get('/products', { params }),
   getById: (id: string) => api.get(`/products/${id}`),
-  create: (data: { 
-    name: string; 
-    price: number; 
-    imageUrl?: string; 
-    categoryId: string; 
+  create: (data: {
+    name: string;
+    price: number;
+    imageUrl?: string;
+    categoryId: string;
   }) => api.post('/products', data),
-  update: (id: string, data: { 
-    name: string; 
-    price: number; 
-    imageUrl?: string; 
-    categoryId: string; 
+  update: (id: string, data: {
+    name: string;
+    price: number;
+    imageUrl?: string;
+    categoryId: string;
   }) => api.put(`/products/${id}`, data),
   delete: (id: string) => api.delete(`/products/${id}`),
 };
 
 // Order API
 export const orderAPI = {
-  getAll: (params?: { status?: string; page?: number; limit?: number }) => 
+  getAll: (params?: { status?: string; page?: number; limit?: number }) =>
     api.get('/orders', { params }),
   getById: (id: string) => api.get(`/orders/${id}`),
-  create: (data: { 
-    items: Array<{ productId: string; quantity: number; variants?: string[] }>; 
+  create: (data: {
+    items: Array<{ productId: string; quantity: number; variants?: string[] }>;
     total: number,
     customerName: string,
     customerPhone: string,
