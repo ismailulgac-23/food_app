@@ -85,7 +85,7 @@
     "price": 104.5,
     "isActive": true,
     "category": "Et ve Tavuk",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_NegzZny5tbn-xol-S1B6KAJrHA35QXDjLw&s"
+    "imageUrl": "https://gidasepeti.net/wp-content/uploads/2020/03/52d1b3d1-c455-4e67-a06a-ab009b36888c.jpeg"
   },
   {
     "id": "438646",
@@ -93,7 +93,7 @@
     "price": 57.5,
     "isActive": true,
     "category": "Et ve Tavuk",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2AVMzwnWU8rX-fY60ELpFg9XKWz3kZmyInA&s"
+    "imageUrl": "https://i.lezzet.com.tr/images-xxlarge-recipe/tavuk-cigeri-6f78e6b8-1b2b-4de5-ae44-16c142637c09.jpg"
   },
   {
     "id": "438654",
@@ -3326,94 +3326,6 @@
     "isActive": true,
     "category": "Temizlik Ürünleri",
     "imageUrl": "https://images.migrosone.com/macrocenter/product/31500164/31500164-a1b361.jpg"
-  },
-  {
-    "id": "450793",
-    "title": "CAMEL BLACK",
-    "price": 93,
-    "isActive": true,
-    "category": "Temizlik Ürünleri",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1KcP-Owv6X54eFoMfXulnDTHOar73Qrp17Q&s"
-  },
-  {
-    "id": "450797",
-    "title": "CAMEL BROWN KISA BOX",
-    "price": 95,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://files.sikayetvar.com/complaint/3381/33812131/camel-brown-sigara-filtresindeki-degisiklik-icim-kalitesini-bozdu-1_768x768.jpg"
-  },
-  {
-    "id": "450805",
-    "title": "CAMEL DEEP BLUE",
-    "price": 92,
-    "isActive": true,
-    "category": "Temizlik Ürünleri",
-    "imageUrl": "https://files.sikayetvar.com/complaint/2485/24859182/camel-deep-blue-1.jpg"
-  },
-  {
-    "id": "450809",
-    "title": "CAMEL DEEP BLUE UZUN",
-    "price": 92,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScKWTEpymmoGX_6m5Ofkvl1U653SAQ_Y-tNw&s"
-  },
-  {
-    "id": "450813",
-    "title": "CAMEL KISA BOX 1913 (84 CPB)",
-    "price": 95,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbmj1XHuCU9f6A-lN3ewyyHa5s-xNbeYAbKg&s"
-  },
-  {
-    "id": "450821",
-    "title": "CAMEL SLENDER BLUE",
-    "price": 92,
-    "isActive": true,
-    "category": "Temizlik Ürünleri",
-    "imageUrl": "https://bizdemevcut.com.tr/wp-content/uploads/2025/02/camel-slender-blue.png"
-  },
-  {
-    "id": "450832",
-    "title": "CAMEL SLENDER GRAY",
-    "price": 92,
-    "isActive": true,
-    "category": "Temizlik Ürünleri",
-    "imageUrl": "https://files.sikayetvar.com/complaint/3147/31476067/sigara-icerigi-degisti-camel-slender-gray-ve-bluenun-tadinda-sorun-1_768x768.jpg"
-  },
-  {
-    "id": "450840",
-    "title": "CAMEL WHITE",
-    "price": 93,
-    "isActive": true,
-    "category": "Temizlik Ürünleri",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS18SxGerRV35TdztaUIp8M5P2yaE5aIXj9NA&s"
-  },
-  {
-    "id": "450844",
-    "title": "CAMEL YELLOW",
-    "price": 95,
-    "isActive": true,
-    "category": "Temizlik Ürünleri",
-    "imageUrl": "https://bizdemevcut.com.tr/wp-content/uploads/2025/02/camel-yellow.png"
-  },
-  {
-    "id": "450848",
-    "title": "CAMEL YELLOW 100",
-    "price": 245,
-    "isActive": true,
-    "category": "Temizlik Ürünleri",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0qu5xRs8MtlPsGdkxe1f8_hOWGCCNxYK1eg&s"
-  },
-  {
-    "id": "450852",
-    "title": "CAMEL YELLOW SP",
-    "price": 95,
-    "isActive": true,
-    "category": "Temizlik Ürünleri",
-    "imageUrl": "https://files.sikayetvar.com/complaint/2666/26669905/camel-sp-den-hatali-sigara-cikti-1.jpg"
   },
   {
     "id": "450916",
@@ -13295,14 +13207,6 @@
     "imageUrl": "https://static.ticimax.cloud/65263/uploads/urunresimleri/buyuk/kemal-kukrer-soya-sosu-750ml--00cda.jpg"
   },
   {
-    "id": "477333",
-    "title": "KENT  SWITCH",
-    "price": 97,
-    "isActive": true,
-    "category": "Ofis ve Teknoloji",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4p_f8wrr3BuNdOwS3pliJWb9gLJSAMmesPg&s"
-  },
-  {
     "id": "477341",
     "title": "KENT 11827 TOFITA 47 GR PORTAKAL",
     "price": 20,
@@ -13334,22 +13238,7 @@
     "category": "Dondurma ve Tatlı",
     "imageUrl": "https://reimg-carrefour.mncdn.com/mnresize/600/600/productimage/30005297/30005297_0_MC/8796332359730_1669716838884.jpg"
   },
-  {
-    "id": "477369",
-    "title": "KENT BLACK SLIMS",
-    "price": 105,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://files.sikayetvar.com/complaint/3198/31980238/yanlis-urun-verilmesi-nedeniyle-maddi-kayip-1_768x768.jpg"
-  },
-  {
-    "id": "477373",
-    "title": "KENT BLUE",
-    "price": 105,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5KZCiB6cIz1Xux-x3watX51njCAZUccaf9A&s"
-  },
+  
   {
     "id": "477377",
     "title": "KENT ÇIKOLIN 1 KG.",
@@ -13357,62 +13246,6 @@
     "isActive": true,
     "category": "Dondurma ve Tatlı",
     "imageUrl": "https://cdn.akakce.com/kent/kent-cikolin-1-kg-bayram-sekeri-z.jpg"
-  },
-  {
-    "id": "477381",
-    "title": "KENT D LİNE BLUE",
-    "price": 100,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5KZCiB6cIz1Xux-x3watX51njCAZUccaf9A&s"
-  },
-  {
-    "id": "477389",
-    "title": "KENT DARK BLUE",
-    "price": 95,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://files.sikayetvar.com/complaint/3251/32515170/sigara-aliminda-fazladan-komisyon-kesilmesi-1.jpg"
-  },
-  {
-    "id": "477393",
-    "title": "KENT DARK BLUE LONG",
-    "price": 95,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://files.sikayetvar.com/complaint/3251/32515170/sigara-aliminda-fazladan-komisyon-kesilmesi-1.jpg"
-  },
-  {
-    "id": "477397",
-    "title": "KENT DL RANGE BLUE LONG SLİM UZUN",
-    "price": 97,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuHwK0f1RZZ3jdPqJZnmePTNvg_MBFnIbm5Q&s"
-  },
-  {
-    "id": "477401",
-    "title": "KENT DL RANGE GREY LONG SLIM UZUN",
-    "price": 97,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbxjZ_n63mJScpchFTPVWGvD1nV1YISj8_dA&s"
-  },
-  {
-    "id": "477409",
-    "title": "KENT D-RANGE BLUE",
-    "price": 95,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://cevirsigara.com/wp-content/uploads/2025/02/kent-d-range-blue-sigara.webp"
-  },
-  {
-    "id": "477413",
-    "title": "KENT D-RANGE GREY",
-    "price": 95,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbxjZ_n63mJScpchFTPVWGvD1nV1YISj8_dA&s"
   },
   {
     "id": "477537",
@@ -13455,30 +13288,6 @@
     "imageUrl": "https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/35607/uploads/urunresimleri/buyuk/kent-missbon-stick-tereyag-43-gr--3f-ddc.png"
   },
   {
-    "id": "477693",
-    "title": "KENT SLIM NIGHT BLACK",
-    "price": 105,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT1_dJGTrz5rOx6uoKE-ZVbj4A6I3BPWdY5A&s"
-  },
-  {
-    "id": "477697",
-    "title": "KENT SLIMS GREY",
-    "price": 105,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://files.sikayetvar.com/complaint/3198/31980238/yanlis-urun-verilmesi-nedeniyle-maddi-kayip-1.jpg"
-  },
-  {
-    "id": "477737",
-    "title": "KENT SWITCH DARK BLUE",
-    "price": 95,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://files.sikayetvar.com/complaint/3251/32515170/sigara-aliminda-fazladan-komisyon-kesilmesi-1.jpg"
-  },
-  {
     "id": "477745",
     "title": "KENT TIPITIP KARIKATÜRLÜ SAKIZ 27 GR",
     "price": 30,
@@ -13509,14 +13318,6 @@
     "isActive": true,
     "category": "Atıştırmalık",
     "imageUrl": "https://productimages.hepsiburada.net/s/559/375/110000621908242.jpg/format:webp"
-  },
-  {
-    "id": "477785",
-    "title": "KENT WHITE",
-    "price": 105,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://hitcigars.com/wp-content/uploads/2023/08/kent-core-white-20s-004.jpg"
   },
   {
     "id": "478273",
@@ -13805,14 +13606,6 @@
     "isActive": true,
     "category": "Su ve İçecekler",
     "imageUrl": "https://yemeksepeti.dhmedia.io/image/product-information-management/68a87d01fa05dcaffc2a25d3.jpg?height=480"
-  },
-  {
-    "id": "479339",
-    "title": "KKENT D-RANGE BLUE",
-    "price": 80,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://files.sikayetvar.com/complaint/3207/32078826/kent-d-range-blue-kalite-dususu-ve-sorumsuzluk-1.jpg"
   },
   {
     "id": "479571",
@@ -15182,30 +14975,6 @@
     "imageUrl": "https://cdnprod.mopas.com.tr/sys-master-mopascdncontainer/h2e/hd0/9078500196382/869862_0_521Wx521H"
   },
   {
-    "id": "483158",
-    "title": "LD BLUE KISA BOX",
-    "price": 90,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://files.sikayetvar.com/complaint/2937/29374305/jti-kisa-ld-blue-sigara-kalitesiz-filtre-ve-tutun-ozensiz-kalite-kontrol-1.jpg"
-  },
-  {
-    "id": "483162",
-    "title": "LD BLUE LONG",
-    "price": 90,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://files.sikayetvar.com/complaint/2937/29374305/jti-kisa-ld-blue-sigara-kalitesiz-filtre-ve-tutun-ozensiz-kalite-kontrol-1_350x350.jpg"
-  },
-  {
-    "id": "483178",
-    "title": "LD SLIMS BOX",
-    "price": 91,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWYxMFORiEq3MgKa5vHHEiwCExiL-0VRAbYQ&s"
-  },
-  {
     "id": "483250",
     "title": "LEF LEF A.KAHVE AYAKKABI BOYASI 60ML",
     "price": 59.9,
@@ -15972,54 +15741,6 @@
     "isActive": true,
     "category": "Et ve Tavuk",
     "imageUrl": "https://duzeymarket.com/images/thumbs/0001089_maret-yore-pilic-salam-550-gr_510.jpeg"
-  },
-  {
-    "id": "485702",
-    "title": "MARLBORO 100 S UZUN SOFT",
-    "price": 100,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://www.sarpermarket.com/wp-content/uploads/2020/06/DSC_0376.jpg?x75857"
-  },
-  {
-    "id": "485710",
-    "title": "MARLBORO EDGE",
-    "price": 98,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Marlboro_Edge.jpg"
-  },
-  {
-    "id": "485714",
-    "title": "MARLBORO EDGE SKY KISA RCB",
-    "price": 95,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0UHQ4oVy3QBZi2ljfPZfN3fCFNibE3NkVSw&s"
-  },
-  {
-    "id": "485718",
-    "title": "MARLBORO KS RED (KISA) BOX",
-    "price": 100,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://www.kibrissanalmarket.com/wp-content/uploads/2021/08/7622100989165-1.jpg?x39403"
-  },
-  {
-    "id": "485726",
-    "title": "MARLBORO TOUCH  ÇESIT ...",
-    "price": 100,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://unimarmarket.com/Content/Urunler/SGR129%20600x600.png"
-  },
-  {
-    "id": "485730",
-    "title": "MARLBORO TOUCH LIGHT KISA BOX",
-    "price": 100,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://files.sikayetvar.com/complaint/2400/24001171/marlboro-sigaramin-icinden-lekeli-sigara-cikti-1_350x350.jpg"
   },
   {
     "id": "485734",
@@ -17156,22 +16877,6 @@
     "isActive": true,
     "category": "Süt Ürünleri",
     "imageUrl": "https://images.migrosone.com/sanalmarket/product/46054370/46054370_1-af1615-1650x1650.jpg"
-  },
-  {
-    "id": "489332",
-    "title": "MURATTI BLUE LINE-491",
-    "price": 97,
-    "isActive": true,
-    "category": "Temel Gıda",
-    "imageUrl": "https://bizdemevcut.com.tr/wp-content/uploads/2025/02/Muratti_Blu_Line.png"
-  },
-  {
-    "id": "489336",
-    "title": "MURATTI ROSSO KISA BOX",
-    "price": 97,
-    "isActive": true,
-    "category": "Temel Gıda",
-    "imageUrl": "https://files.sikayetvar.com/complaint/3268/32685751/muratti-rossonun-kalitesi-son-zamanlarda-neden-bu-kadar-dustu-1_768x768.jpg"
   },
   {
     "id": "489380",
@@ -19733,22 +19438,7 @@
     "category": "Ev ve Yaşam",
     "imageUrl": "https://cdn.dsmcdn.com/mnresize/420/620/ty1620/prod/QC/20250103/04/1d92815f-eb8c-3461-a4e4-0e3591ad3ee1/1_org.jpg"
   },
-  {
-    "id": "495154",
-    "title": "PALL MAL AMBER",
-    "price": 95,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg7rD1bi2ZenqMhXsn_YJ7rWz2Tzg7rT03z6uXx4PE8A8uttT96oN9BrSPFNTq46jzYEr-TlVmsR6Yy9gUSIO8y06GNZFiN_CXrIFyhS0iPAeLDnsVO5OK2L6neOUuGXqgd5XFXE3TkGU5UAgwhvEPaEbmGJtI4tJTAIbOgiKKKb3n1QCyMtFzyVv5B/s1024/Pall-Mall-Amber.jpg"
-  },
-  {
-    "id": "495158",
-    "title": "PALL MAL RED",
-    "price": 95,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://www.bajadutyfree.com/cdn/shop/files/101863_Pall_Mall_Red_Filter_100_Box_200_1.jpg?v=1682546791"
-  },
+
   {
     "id": "495294",
     "title": "ÜZÜM CİMİN ÜZÜMÜ",
@@ -20284,54 +19974,6 @@
     "isActive": true,
     "category": "Kişisel Bakım",
     "imageUrl": "https://cdn.dsmcdn.com/ty1496/product/media/images/prod/QC/20240822/04/51e8330a-71b0-31eb-91b4-20018f3a68e3/1_org_zoom.jpg"
-  },
-  {
-    "id": "496338",
-    "title": "PARLIAMENT AQUA B.SLIMS 100 RCB",
-    "price": 105,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT--0SgteMxJ90V_qlNm2TlK-pAXnmetPoPjA&s"
-  },
-  {
-    "id": "496342",
-    "title": "PARLIAMENT AQUA BLUE KISA RCB",
-    "price": 100,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcNAa6LP9JiDqsLuMcvjuyfOyjQnQW8fw5nw&s"
-  },
-  {
-    "id": "496346",
-    "title": "PARLIAMENT MİDNİGHT BLUE",
-    "price": 100,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://files.sikayetvar.com/complaint/2464/24647788/sigara-parliament-midnight-blue-2.jpg"
-  },
-  {
-    "id": "496350",
-    "title": "PARLIAMENT NIGHT 100 S SOFT UZUN",
-    "price": 105,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdRgq4eefvFralnidtYqUUCqWmzrgSiqjX5Q&s"
-  },
-  {
-    "id": "496354",
-    "title": "PARLIAMENT NIGHT KISA RC BOX",
-    "price": 100,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://marketkarsilastir.com/urunler/8691693001034.jpg"
-  },
-  {
-    "id": "496358",
-    "title": "PARLIAMENT RESERVE KISA (MAVI PAKET)",
-    "price": 100,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://cf.kizlarsoruyor.com/q9062850/ebad11db-a0b1-4fd2-ac68-ab0ac716eea9.jpg"
   },
   {
     "id": "496598",
@@ -22563,38 +22205,6 @@
     "isActive": true,
     "category": "Meyve ve Sebze",
     "imageUrl": "https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/3140/uploads/urunresimleri/buyuk/organik-roka-demet-kurtdogmus-ciftligi-5dfd0a.jpg"
-  },
-  {
-    "id": "502884",
-    "title": "ROTHMANS BLUE KISA",
-    "price": 90,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://bakkalim.co.uk/image/cache/newproducts2/Rothmans-Blue-20-Cigarettes-200x200w.jpeg"
-  },
-  {
-    "id": "502888",
-    "title": "ROTHMANS BLUE LONG UZUN",
-    "price": 90,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://www.kibrissanalmarket.com/wp-content/uploads/2023/07/86942584.jpg?x39403"
-  },
-  {
-    "id": "502892",
-    "title": "ROTHMANS D RANGE BLUE SLIM KISA",
-    "price": 90,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://www.kibrissanalmarket.com/wp-content/uploads/2023/07/86942584.jpg?x39403"
-  },
-  {
-    "id": "502896",
-    "title": "ROTMANS DL RNG BLCK",
-    "price": 90,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdx7arytMU-lI8ZG7c66qVXaykMKj-37yPgg&s"
   },
   {
     "id": "502936",
@@ -30643,132 +30253,12 @@
     "imageUrl": null
   },
   {
-    "id": "523263",
-    "title": "WINSTON BLUE LIGHT KISA BOX (RC KS CPB)",
-    "price": 100,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://files.sikayetvar.com/complaint/2425/24251532/jti-kalitenin-bozulmasi-verdigimiz-parayi-hak-etmemesi-keyfimizi-kacirdi-3_350x350.jpg"
-  },
-  {
-    "id": "523267",
-    "title": "WINSTON RED KISA BOX (RC KS)",
-    "price": 100,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://cevirsigara.com/wp-content/uploads/2025/02/winston-classic-red-kirmizi-sigara-v1.webp"
-  },
-  {
-    "id": "523279",
-    "title": "WINSTON SLENDER GRAY",
-    "price": 95,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://files.sikayetvar.com/complaint/3166/31664574/winston-slender-gray-tutununde-tad-degisikligi-sikayeti-1_350x350.jpg"
-  },
-  {
     "id": "523303",
     "title": "WİNDEX BUZDOLABI POŞRTİ  KÜÇÜK B 4LÜ",
     "price": 19.95,
     "isActive": true,
     "category": "Temizlik Ürünleri",
     "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3N_u4qPJJOzkoDtPDPLz1zMV6bD_5pM1fkQ&s"
-  },
-  {
-    "id": "523315",
-    "title": "WİNSTON BLUE LONG*",
-    "price": 100,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://files.sikayetvar.com/complaint/2759/27591119/winston-blue-long-red-1.jpg"
-  },
-  {
-    "id": "523319",
-    "title": "WİNSTON DARK BLUE",
-    "price": 95,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://cevirsigara.com/wp-content/uploads/2025/02/winston-dark-blue-sigara.webp"
-  },
-  {
-    "id": "523323",
-    "title": "WİNSTON DARK BLUE UZUN",
-    "price": 95,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://files.sikayetvar.com/complaint/2783/27834724/winston-dark-blue-sigara-kalitesi-1.jpg"
-  },
-  {
-    "id": "523327",
-    "title": "WİNSTON DEEP BLUE",
-    "price": 95,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://files.sikayetvar.com/complaint/2901/29016840/winston-deep-blue-delik-hatali-sigaralar-3.jpg"
-  },
-  {
-    "id": "523331",
-    "title": "WİNSTON GRAY KISA*",
-    "price": 95,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://files.sikayetvar.com/complaint/2408/24084117/winston-gray-hakkinda-4.jpg"
-  },
-  {
-    "id": "523335",
-    "title": "WİNSTON IXENCE SIYAH.",
-    "price": 105,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://files.sikayetvar.com/complaint/2830/28309207/winston-xsence-black-hatasi-1.jpg"
-  },
-  {
-    "id": "523343",
-    "title": "WİNSTON SLENDER  DARK BLUE",
-    "price": 95,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://files.sikayetvar.com/complaint/3154/31548364/winston-slim-dark-bluenun-piyasadan-kalkmasi-1.jpg"
-  },
-  {
-    "id": "523351",
-    "title": "WİNSTON SLENDER BLUE",
-    "price": 95,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://cevirsigara.com/wp-content/uploads/2025/02/winston-slender-blue-sigara.webp"
-  },
-  {
-    "id": "523355",
-    "title": "WİNSTON SLENDER BLUE LONG",
-    "price": 97,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://files.sikayetvar.com/complaint/2902/29024835/winston-slender-blue-long-1_768x768.jpg"
-  },
-  {
-    "id": "523359",
-    "title": "WİNSTON SLIM GRAY",
-    "price": 105,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://files.sikayetvar.com/complaint/2531/25314301/winston-slims-gray-sigaralarda-kan-izi-2.jpg"
-  },
-  {
-    "id": "523363",
-    "title": "WİNSTON SLİM BLUE",
-    "price": 105,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://bizdemevcut.com.tr/wp-content/uploads/2025/02/winston-slims-blue.png"
-  },
-  {
-    "id": "523367",
-    "title": "WİNSTON XSENCE GRAY",
-    "price": 105,
-    "isActive": true,
-    "category": "Atıştırmalık",
-    "imageUrl": "https://files.sikayetvar.com/complaint/3085/30850101/winston-xsence-gray-paket-sorunu-kapak-yirtilma-sikayeti-1.jpg"
   },
   {
     "id": "523587",
@@ -37169,14 +36659,6 @@
     "imageUrl": "https://cdn.akakce.com/vernel/vernel-gulun-buyusu-3-lt-30-yikama-z.jpg"
   },
   {
-    "id": "535201",
-    "title": "MARLBORO TOUCH GREY",
-    "price": 100,
-    "isActive": true,
-    "category": "Temizlik Ürünleri",
-    "imageUrl": "https://files.sikayetvar.com/complaint/3160/31600291/touch-greyin-geri-donusu-icin-cagri-1.jpg"
-  },
-  {
     "id": "536760",
     "title": "SLOR SALATALIK",
     "price": 39.9,
@@ -37215,22 +36697,6 @@
     "isActive": true,
     "category": "Meyve ve Sebze",
     "imageUrl": "https://images.migrosone.com/sanalmarket/product/28270004/misir-adet-d61636-1650x1650.jpg"
-  },
-  {
-    "id": "537303",
-    "title": "WİNSTON SLIMS Q LINE",
-    "price": 105,
-    "isActive": true,
-    "category": "Temizlik Ürünleri",
-    "imageUrl": "https://bizdemevcut.com.tr/wp-content/uploads/2025/02/winston-slender-q-line.png"
-  },
-  {
-    "id": "537307",
-    "title": "KENT SLIMS BLUE LONG",
-    "price": 103,
-    "isActive": true,
-    "category": "Temizlik Ürünleri",
-    "imageUrl": "https://files.sikayetvar.com/complaint/3207/32078826/kent-d-range-blue-kalite-dususu-ve-sorumsuzluk-1.jpg"
   },
   {
     "id": "537373",
@@ -37375,14 +36841,6 @@
     "isActive": true,
     "category": "Temizlik Ürünleri",
     "imageUrl": "https://www.eveshop.com.tr/cdn/shop/files/1002858_1_LARGE_dd8ba2fc-4423-4cf9-8d84-c809770e2b71.jpg?v=1758672633"
-  },
-  {
-    "id": "2116073",
-    "title": "KENT SLIMS GREY LONG",
-    "price": 103,
-    "isActive": true,
-    "category": "Temizlik Ürünleri",
-    "imageUrl": "https://files.sikayetvar.com/complaint/3198/31980238/yanlis-urun-verilmesi-nedeniyle-maddi-kayip-1_768x768.jpg"
   },
   {
     "id": "2116141",
@@ -41808,14 +41266,6 @@
     "imageUrl": "https://cdn.dsmcdn.com/mnresize/420/620/ty1534/product/media/images/prod/QC/20240910/10/89030820-60bb-3201-9b75-99baab11401f/1_org_zoom.jpg"
   },
   {
-    "id": "2561071",
-    "title": "WİNSTON SLENDER Q LİNE",
-    "price": 95,
-    "isActive": true,
-    "category": "Kişisel Bakım",
-    "imageUrl": "https://bizdemevcut.com.tr/wp-content/uploads/2025/02/winston-slender-q-line.png"
-  },
-  {
     "id": "2561345",
     "title": "SÜTAŞ TATLIMMM  ÇİLEKLİ 65 GR",
     "price": 10,
@@ -44678,14 +44128,6 @@
     "isActive": true,
     "category": "Temel Gıda",
     "imageUrl": "https://images.migrosone.com/sanalmarket/product/01015835/01015835_1-39ce7a-1650x1650.jpg"
-  },
-  {
-    "id": "2868567",
-    "title": "MARLBORO EDGE SLIMS",
-    "price": 97,
-    "isActive": true,
-    "category": "Su ve İçecekler",
-    "imageUrl": "https://cevirsigara.com/wp-content/uploads/2025/02/marlboro-edge-less-smell-slim-sigara.webp"
   },
   {
     "id": "2872102",
