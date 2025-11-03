@@ -36,6 +36,8 @@ app.use(cors({
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 
+app.use('/public', express.static(path.resolve('./src/public')));
+
 // Serve static files (uploaded images)
 app.use('/uploads', express.static(path.resolve('./uploads')));
 

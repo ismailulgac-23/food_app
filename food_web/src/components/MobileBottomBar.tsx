@@ -59,7 +59,7 @@ const MobileBottomBar: React.FC<MobileBottomBarProps> = ({ excludePaths = [] }) 
               </button>
               <button onClick={() => navigate('/all')} className="flex flex-col items-center justify-center py-3 text-gray-700">
                 <Icon icon="mdi:view-grid" className="w-6 h-6" />
-                <span className="mt-1">Ürünler</span>
+                <span className="mt-1">Kategoriler</span>
               </button>
               <button onClick={() => navigate('/cart')} className="relative flex flex-col items-center justify-center py-3 text-gray-700">
                 <Icon icon="mdi:cart" className="w-6 h-6" />

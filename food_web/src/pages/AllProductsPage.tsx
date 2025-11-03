@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import { CircleSpinner } from 'react-spinners-kit';
-import { categoryAPI, productAPI } from '../services/api';
+import { categoryAPI, productAPI, getImageUrl } from '../services/api';
 import { useLocation } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { toast } from 'react-hot-toast';
@@ -9,8 +9,8 @@ import { toast } from 'react-hot-toast';
 const AllProductsPage: React.FC = () => {
   const [products, setProducts] = useState<any[]>([]);
   const [displayProducts, setDisplayProducts] = useState<any[]>([]);
-  const [categories, setCategories] = useState<Array<{ id: string; name: string }>>([]);
-  const [selectedCats, setSelectedCats] = useState<Set<string>>(new Set());
+  const [categories, setCategories] = useState<Array<{ id: string; name: string; imageUrl?: string }>>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
@@ -34,17 +34,11 @@ const AllProductsPage: React.FC = () => {
       try {
         setLoading(true);
         setError(null);
-        const effectiveCategoryId = selectedCats.size === 1 ? Array.from(selectedCats)[0] : (categoryId || undefined);
+        const effectiveCategoryId = selectedCategory || categoryId || undefined;
         const res: any = await productAPI.getAll({ page, limit: 20, search: searchQuery || undefined, categoryId: effectiveCategoryId });
         const list = res.data.data || [];
         setProducts(list);
-        if (selectedCats.size > 1) {
-          setDisplayProducts(list.filter((p: any) => selectedCats.has(p.category?.id)));
-        } else if (selectedCats.size === 1) {
-          setDisplayProducts(list);
-        } else {
-          setDisplayProducts(list);
-        }
+        setDisplayProducts(list);
         setPages(res.data.pagination?.pages || 1);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } catch (e) {
@@ -54,17 +48,13 @@ const AllProductsPage: React.FC = () => {
       }
     };
     fetchProducts();
-  }, [page, searchQuery, categoryId, Array.from(selectedCats).join(',')]);
+  }, [page, searchQuery, categoryId, selectedCategory]);
 
   const toggleCategory = (id: string) => {
-    setSelectedCats(prev => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id); else next.add(id);
-      return next;
-    });
+    setSelectedCategory(prev => prev === id ? null : id);
   };
 
-  const clearCategories = () => setSelectedCats(new Set());
+  const clearCategories = () => setSelectedCategory(null);
 
   const handleAdd = (p: any) => {
     addToCart(p);
@@ -107,20 +97,46 @@ const AllProductsPage: React.FC = () => {
 
         {/* Category filter chips/cards */}
         {categories.length > 0 && (
-          <div className="mb-6">
-            <div className="flex flex-wrap gap-2">
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-semibold text-gray-900">Kategoriler</h2>
+              {selectedCategory && (
+                <button 
+                  onClick={clearCategories} 
+                  className="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center gap-2 transition"
+                >
+                  <Icon icon="mdi:close" className="w-5 h-5" />
+                  <span className="text-sm font-medium">Filtreyi Temizle</span>
+                </button>
+              )}
+            </div>
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
               {categories.map(c => (
                 <button
                   key={c.id}
                   onClick={() => toggleCategory(c.id)}
-                  className={`px-4 py-2 rounded-xl border transition shadow-sm ${selectedCats.has(c.id) ? 'bg-primary text-white border-primary shadow-md' : 'bg-white text-gray-700 border-gray-200 hover:border-gray-300'}`}
+                  className={`flex flex-col items-center gap-3 p-4 rounded-2xl border-2 transition-all ${
+                    selectedCategory === c.id
+                      ? 'bg-primary text-white border-primary shadow-lg scale-105' 
+                      : 'bg-white text-gray-700 border-gray-200 hover:border-primary hover:shadow-md'
+                  }`}
                 >
-                  {c.name}
+                  <div className={`w-16 h-16 rounded-xl overflow-hidden flex items-center justify-center shrink-0 ${
+                    selectedCategory === c.id ? 'bg-white/20' : 'bg-gray-50'
+                  }`}>
+                    {c.imageUrl ? (
+                      <img
+                        src={getImageUrl(c.imageUrl)}
+                        alt={c.name}
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <span className="text-red-600 font-extrabold tracking-widest text-[10px]">UYMAR</span>
+                    )}
+                  </div>
+                  <span className="text-sm font-semibold text-center line-clamp-2">{c.name}</span>
                 </button>
               ))}
-              {selectedCats.size > 0 && (
-                <button onClick={clearCategories} className="ml-2 px-3 py-2 rounded-xl border border-gray-200 text-gray-600 hover:bg-gray-50">Temizle</button>
-              )}
             </div>
           </div>
         )}

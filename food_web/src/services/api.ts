@@ -1,7 +1,12 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://api.uymarmarket.com.tr/api';
-/* const API_BASE_URL = 'http://localhost:3000/api'; */
+/* const API_BASE_URL = 'https://api.uymarmarket.com.tr/api'; */
+const BASE_URL = "http://localhost:3000";
+const API_BASE_URL = `${BASE_URL}/api`;
+
+export const getImageUrl = (imageUrl: string) => {
+  return `${BASE_URL}/public/${imageUrl}`;
+};
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -38,9 +43,9 @@ export const orderAPI = {
   getAll: () => api.get('/orders'),
   getById: (id: string) => api.get(`/orders/${id}`),
   getMine: () => api.get('/orders/mine'),
-  create: (orderData: { 
-    items: any[]; 
-    total: number; 
+  create: (orderData: {
+    items: any[];
+    total: number;
     status: string;
     customerName: string;
     customerPhone: string;

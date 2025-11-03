@@ -131,7 +131,7 @@ const Header: React.FC = () => {
           <nav className="hidden md:flex items-center gap-3">
             <Link to="/all" className="flex items-center gap-2 px-3 py-2 rounded-xl text-text-primary hover:bg-gray-50 hover:text-primary transition group">
               <Icon icon="mdi:view-grid" className="w-5 h-5 group-hover:scale-110 transition" />
-              <span className="text-sm font-medium">Ürünler</span>
+              <span className="text-sm font-medium">Kategoriler</span>
             </Link>
             <Link to="/cart" className="flex items-center gap-2 px-3 py-2 rounded-xl text-text-primary hover:bg-gray-50 hover:text-primary transition group relative">
               <Icon icon="mdi:cart" className="w-5 h-5 group-hover:scale-110 transition" />
@@ -190,7 +190,7 @@ const Header: React.FC = () => {
                 </div>
 
                 <Link to="/all" className="flex items-center gap-2 px-4 py-3 text-text-primary hover:bg-white hover:text-primary transition rounded-xl text-base font-semibold" onClick={() => setIsMenuOpen(false)}>
-                  <Icon icon="mdi:view-grid" className="w-6 h-6" /> Ürünler
+                  <Icon icon="mdi:view-grid" className="w-6 h-6" /> Kategoriler
                 </Link>
                 <Link to="/cart" className="flex items-center gap-2 px-4 py-3 text-text-primary hover:bg-white hover:text-primary transition rounded-xl text-base font-semibold" onClick={() => setIsMenuOpen(false)}>
                   <Icon icon="mdi:cart" className="w-6 h-6" /> Sepet

@@ -17,8 +17,8 @@ async function main() {
   await prisma.category.deleteMany();
   console.log('✅ Categories deleted');
 
-  
-  
+
+
   await prisma.order.deleteMany();
   console.log('✅ Orders deleted');
   await prisma.user.deleteMany();
@@ -26,22 +26,22 @@ async function main() {
 
   await prisma.category.createMany({
     data: [
-      { name: "Et ve Tavuk", id: slugify("Et ve Tavuk") },
-      { name: "Meyve ve Sebze", id: slugify("Meyve ve Sebze") },
-      { name: "Kahvaltılıklar", id: slugify("Kahvaltılıklar") },
-      { name: "Süt Ürünleri", id: slugify("Süt Ürünleri") },
-      { name: "Temel Gıda", id: slugify("Temel Gıda") },
-      { name: "Fırın ve Pastane", id: slugify("Fırın ve Pastane") },
-      { name: "Donuk ve Hazır Gıda", id: slugify("Donuk ve Hazır Gıda") },
-      { name: "Dondurma ve Tatlı", id: slugify("Dondurma ve Tatlı") },
-      { name: "Atıştırmalık", id: slugify("Atıştırmalık") },
-      { name: "Su ve İçecekler", id: slugify("Su ve İçecekler") },
-      { name: "Kişisel Bakım", id: slugify("Kişisel Bakım") },
-      { name: "Temizlik Ürünleri", id: slugify("Temizlik Ürünleri") },
-      { name: "Bebek Evreni", id: slugify("Bebek Evreni") },
-      { name: "Evcil Dostlarımız", id: slugify("Evcil Dostlarımız") },
-      { name: "Ev ve Yaşam", id: slugify("Ev ve Yaşam") },
-      { name: "Ofis ve Teknoloji", id: slugify("Ofis ve Teknoloji") },
+      { imageUrl: "et-ve-tavuk.jpg", name: "Et ve Tavuk", id: slugify("Et ve Tavuk") },
+      { imageUrl: "meyve-ve-sebze.jpg", name: "Meyve ve Sebze", id: slugify("Meyve ve Sebze") },
+      { imageUrl: "kahvaltiliklar.jpg", name: "Kahvaltılıklar", id: slugify("Kahvaltılıklar") },
+      { imageUrl: "sut-urunleri.jpg", name: "Süt Ürünleri", id: slugify("Süt Ürünleri") },
+      { imageUrl: "temel-gida.jpg", name: "Temel Gıda", id: slugify("Temel Gıda") },
+      { imageUrl: "firin-ve-pastane.jpg", name: "Fırın ve Pastane", id: slugify("Fırın ve Pastane") },
+      { imageUrl: "donuk-ve-hazir-gida.jpg", name: "Donuk ve Hazır Gıda", id: slugify("Donuk ve Hazır Gıda") },
+      { imageUrl: "dondurma-ve-tatli.jpg", name: "Dondurma ve Tatlı", id: slugify("Dondurma ve Tatlı") },
+      { imageUrl: "atistirmaliklar.jpg", name: "Atıştırmalık", id: slugify("Atıştırmalık") },
+      { imageUrl: "su-ve-icecekler.jpg", name: "Su ve İçecekler", id: slugify("Su ve İçecekler") },
+      { imageUrl: "kisisel-bakim.jpg", name: "Kişisel Bakım", id: slugify("Kişisel Bakım") },
+      { imageUrl: "temizlik-urunleri.jpg", name: "Temizlik Ürünleri", id: slugify("Temizlik Ürünleri") },
+      { imageUrl: "bebek-evreni.jpg", name: "Bebek Evreni", id: slugify("Bebek Evreni") },
+      { imageUrl: "evcil-dostlarimiz.jpg", name: "Evcil Dostlarımız", id: slugify("Evcil Dostlarımız") },
+      { imageUrl: "ev-ve-yasam.jpg", name: "Ev ve Yaşam", id: slugify("Ev ve Yaşam") },
+      { imageUrl: "ofis-ve-teknoloji.jpg", name: "Ofis ve Teknoloji", id: slugify("Ofis ve Teknoloji") },
       { name: "Diğer", id: slugify("Diğer") },
     ],
     skipDuplicates: true
@@ -67,8 +67,6 @@ async function main() {
     let count = 0;
     for (const it of items) {
       try {
-        console.log('it', it.imageUrl);
-
         await prisma.product.create({
           data: {
             name: it.title,

@@ -4,9 +4,9 @@ import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { categoryAPI, productAPI } from '../services/api';
+import { categoryAPI, productAPI, getImageUrl } from '../services/api';
 
-type Category = { id: string; name: string };
+type Category = { id: string; name: string; imageUrl?: string };
 const shuffle = <T,>(arr: T[]): T[] => arr.map(v => [Math.random(), v] as const).sort((a, b) => a[0] - b[0]).map(([, v]) => v);
 
 const HomePage: React.FC = () => {
@@ -64,7 +64,7 @@ const HomePage: React.FC = () => {
               <Link to="/all" className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-xl font-semibold text-sm sm:text-base">Alışverişe Başla</Link>
             </div>
           </div>
-          <div className="order-first lg:order-none">
+          <div className="order-first lg:order-0">
             <div className="rounded-2xl overflow-hidden bg-gray-100 border border-gray-200">
               <img
                 src="https://media.istockphoto.com/id/1406885804/tr/foto%C4%9Fraf/a-shopping-cart-by-a-store-shelf-in-a-supermarket.jpg?s=612x612&w=0&k=20&c=N4Qei7JN0nph0NwSY-idqJw088QJHOkCliQOjK42b-w="
@@ -134,6 +134,43 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Kategoriler Section */}
+      {categories.length > 0 && (
+        <section className="bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+            <div className="mb-6">
+              <div className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-xs font-semibold mb-2">Kategoriler</div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Alışveriş Kategorileri</h2>
+              <p className="text-gray-600 text-sm sm:text-base">İhtiyacınız olan her şey bir kategori uzağınızda</p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {categories.map((cat) => (
+                <div
+                  key={cat.id}
+                  onClick={() => navigate(`/all?categoryId=${encodeURIComponent(cat.id)}`)}
+                  className="bg-white rounded-2xl border border-gray-200 hover:border-primary hover:shadow-lg transition cursor-pointer p-4 flex flex-col items-center gap-3"
+                >
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-gray-50 flex items-center justify-center">
+                    {cat.imageUrl ? (
+                      <img
+                        src={getImageUrl(cat.imageUrl)}
+                        alt={cat.name}
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <span className="text-red-600 font-extrabold tracking-widest text-xs">UYMAR</span>
+                    )}
+                  </div>
+                  <div className="text-center">
+                    <div className="font-semibold text-gray-900 text-sm">{cat.name}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Deals and Popular Sections */}
       <section className="bg-white">
@@ -215,11 +252,23 @@ const HomePage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Categories */}
         <aside className="bg-white rounded-2xl border border-gray-200 p-4 h-max">
-          <div className="font-semibold mb-3">Kategoriler</div>
-          <ul className="space-y-2">
+          <div className="font-semibold mb-3">Hızlı Erişim</div>
+          <ul className="space-y-3">
             {categories.map((c) => (
-              <li key={c.id} className="flex items-center gap-2 text-sm sm:text-base text-gray-700 hover:text-primary cursor-pointer" onClick={() => navigate(`/all?categoryId=${encodeURIComponent(c.id)}`)}>
-                <Icon icon="mdi:chevron-right" className="w-4 h-4" /> {c.name}
+              <li key={c.id} className="flex items-center gap-3 text-sm sm:text-base text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg p-2 cursor-pointer transition" onClick={() => navigate(`/all?categoryId=${encodeURIComponent(c.id)}`)}>
+                <div className="w-10 h-10 rounded-lg overflow-hidden bg-gray-50 flex items-center justify-center shrink-0">
+                  {c.imageUrl ? (
+                    <img
+                      src={getImageUrl(c.imageUrl)}
+                      alt={c.name}
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <span className="text-red-600 font-extrabold tracking-widest text-[8px]">UYMAR</span>
+                  )}
+                </div>
+                <span className="flex-1">{c.name}</span>
+                <Icon icon="mdi:chevron-right" className="w-4 h-4 shrink-0" />
               </li>
             ))}
           </ul>
