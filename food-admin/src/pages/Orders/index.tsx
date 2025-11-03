@@ -83,6 +83,28 @@ export default function Orders() {
     }
   };
 
+  const getPaymentMethodText = (method: string) => {
+    switch (method) {
+      case 'CASH_ON_DELIVERY':
+        return 'Kapıda Nakit Ödeme';
+      case 'CARD_ON_DELIVERY':
+        return 'Kapıda Kredi Kartı';
+      default:
+        return method;
+    }
+  };
+
+  const getPaymentMethodIcon = (method: string) => {
+    switch (method) {
+      case 'CASH_ON_DELIVERY':
+        return '💵';
+      case 'CARD_ON_DELIVERY':
+        return '💳';
+      default:
+        return '💰';
+    }
+  };
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('tr-TR', {
       year: 'numeric',
@@ -166,6 +188,9 @@ export default function Orders() {
                     Toplam
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Ödeme
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Durum
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -191,6 +216,9 @@ export default function Orders() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                       ₺{order.total.toFixed(2)}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                      {getPaymentMethodIcon(order.paymentMethod)} {getPaymentMethodText(order.paymentMethod)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(order.status)}`}>
@@ -291,6 +319,12 @@ export default function Orders() {
                     <div>
                       <p className="text-sm text-gray-500">Telefon</p>
                       <p className="text-lg font-semibold text-gray-900">{selectedOrder.customerPhone}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">Ödeme Yöntemi</p>
+                      <p className="text-lg font-semibold text-gray-900">
+                        {getPaymentMethodIcon(selectedOrder.paymentMethod)} {getPaymentMethodText(selectedOrder.paymentMethod)}
+                      </p>
                     </div>
                     <div className="sm:col-span-3">
                       <p className="text-sm text-gray-500">Adres</p>

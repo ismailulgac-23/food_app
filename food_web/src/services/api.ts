@@ -47,6 +47,7 @@ export const orderAPI = {
     items: any[];
     total: number;
     status: string;
+    paymentMethod?: string;
     customerName: string;
     customerPhone: string;
     customerAddress: string;

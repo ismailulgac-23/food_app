@@ -27,7 +27,7 @@ const AllProductsPage: React.FC = () => {
       try {
         const res: any = await categoryAPI.getAll();
         setCategories(res.data.data || []);
-      } catch {}
+      } catch { }
     })();
 
     const fetchProducts = async () => {
@@ -101,8 +101,8 @@ const AllProductsPage: React.FC = () => {
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-semibold text-gray-900">Kategoriler</h2>
               {selectedCategory && (
-                <button 
-                  onClick={clearCategories} 
+                <button
+                  onClick={clearCategories}
                   className="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center gap-2 transition"
                 >
                   <Icon icon="mdi:close" className="w-5 h-5" />
@@ -115,15 +115,13 @@ const AllProductsPage: React.FC = () => {
                 <button
                   key={c.id}
                   onClick={() => toggleCategory(c.id)}
-                  className={`flex flex-col items-center gap-3 p-4 rounded-2xl border-2 transition-all ${
-                    selectedCategory === c.id
-                      ? 'bg-primary text-white border-primary shadow-lg scale-105' 
-                      : 'bg-white text-gray-700 border-gray-200 hover:border-primary hover:shadow-md'
-                  }`}
+                  className={`flex flex-col items-center gap-3 p-4 rounded-2xl border-2 transition-all ${selectedCategory === c.id
+                    ? 'bg-primary text-white border-primary shadow-lg scale-105'
+                    : 'bg-white text-gray-700 border-gray-200 hover:border-primary hover:shadow-md'
+                    }`}
                 >
-                  <div className={`w-16 h-16 rounded-xl overflow-hidden flex items-center justify-center shrink-0 ${
-                    selectedCategory === c.id ? 'bg-white/20' : 'bg-gray-50'
-                  }`}>
+                  <div className={`w-16 h-16 rounded-xl overflow-hidden flex items-center justify-center shrink-0 ${selectedCategory === c.id ? 'bg-white/20' : 'bg-gray-50'
+                    }`}>
                     {c.imageUrl ? (
                       <img
                         src={getImageUrl(c.imageUrl)}
@@ -176,8 +174,8 @@ const AllProductsPage: React.FC = () => {
                 <button
                   onClick={() => handleAdd(product)}
                   className={`mt-4 cursor-pointer w-full md:w-auto px-4 py-2 rounded-xl font-semibold text-sm transition ${addedIds.has(product.id)
-                      ? 'bg-green-500 text-white'
-                      : 'bg-primary text-white hover:bg-primary-dark'
+                    ? 'bg-green-500 text-white'
+                    : 'bg-primary text-white hover:bg-primary-dark'
                     }`}
                 >
                   {addedIds.has(product.id) ? 'Eklendi' : 'Sepete Ekle'}

@@ -28,6 +28,7 @@ export interface Order {
   id: string;
   total: number;
   status: OrderStatus;
+  paymentMethod: PaymentMethod;
   items: OrderItem[];
   customerName: string;
   customerPhone: string;
@@ -37,6 +38,7 @@ export interface Order {
 }
 
 export type OrderStatus = 'PENDING' | 'PROCESSING' | 'SHIPPED' | 'DELIVERED' | 'CANCELLED';
+export type PaymentMethod = 'CASH_ON_DELIVERY' | 'CARD_ON_DELIVERY';
 
 export interface ApiResponse<T> {
   success: boolean;
@@ -129,6 +131,7 @@ export interface CreateOrderData {
     variants?: string[];
   }>;
   total: number;
+  paymentMethod?: PaymentMethod;
   customerName: string;
   customerPhone: string;
   customerAddress: string;
@@ -136,6 +139,7 @@ export interface CreateOrderData {
 
 export interface UpdateOrderData {
   status?: OrderStatus;
+  paymentMethod?: PaymentMethod;
   customerName?: string;
   customerPhone?: string;
   customerAddress?: string;

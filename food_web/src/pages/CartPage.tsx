@@ -27,6 +27,7 @@ const CartPage: React.FC = () => {
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
   const [customerAddress, setCustomerAddress] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState<'CASH_ON_DELIVERY' | 'CARD_ON_DELIVERY'>('CASH_ON_DELIVERY');
   const [errors, setErrors] = useState<{ name?: string; phone?: string; address?: string }>({});
   const [profile, setProfile] = useState<{ fullName?: string; phone?: string; address?: string } | null>(null);
 
@@ -101,6 +102,7 @@ const CartPage: React.FC = () => {
         })),
         total: total,
         status: 'PENDING',
+        paymentMethod: paymentMethod,
         customerName: profile?.fullName || '',
         customerPhone: profile?.phone || '',
         customerAddress: customerAddress.trim()
@@ -167,7 +169,7 @@ const CartPage: React.FC = () => {
                 {cartItems.map((item) => (
                   <div key={item.id} className="bg-grey-50 rounded-2xl p-4 sm:p-6 hover:bg-grey-100 transition-all duration-300">
                     <div className="flex items-center space-x-3 sm:space-x-6">
-                      <div className="w-16 h-16 sm:w-24 sm:h-24 flex-shrink-0 bg-gray-50 rounded-xl relative flex items-center justify-center overflow-hidden">
+                      <div className="w-16 h-16 sm:w-24 sm:h-24 shrink-0 bg-gray-50 rounded-xl relative flex items-center justify-center overflow-hidden">
                         {item.imageUrl ? (
                           <img
                             src={item.imageUrl}
@@ -184,9 +186,9 @@ const CartPage: React.FC = () => {
                           {item.name}
                         </h3>
                         <div className="flex items-center space-x-2 mb-2 sm:mb-3">
-                          <div className={`w-2 h-2 rounded-full ${item.inStock ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                          <div className={`w-2 h-2 rounded-full bg-green-500`}></div>
                           <span className="text-text-secondary text-xs sm:text-sm font-medium">
-                            {item.inStock ? 'Stokta var' : 'Stokta yok'}
+                            Stokta Var
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
@@ -204,7 +206,7 @@ const CartPage: React.FC = () => {
                           >
                             <Icon icon="mdi:minus" className="w-4 h-4 sm:w-5 sm:h-5 text-text-secondary" />
                           </button>
-                          <span className="px-3 sm:px-6 py-2 sm:py-3 text-text-primary font-bold text-sm sm:text-lg min-w-[3rem] sm:min-w-[4rem] text-center">
+                          <span className="px-3 sm:px-6 py-2 sm:py-3 text-text-primary font-bold text-sm sm:text-lg min-w-12 sm:min-w-16 text-center">
                             {item.quantity}
                           </span>
                           <button
@@ -323,6 +325,62 @@ const CartPage: React.FC = () => {
                 />
                 {errors.address && <p className="mt-1 text-sm text-red-600">{errors.address}</p>}
               </div>
+
+              <div>
+                <label className="block text-sm font-medium text-text-secondary mb-3">Ödeme Yöntemi</label>
+                <div className="space-y-3">
+                  <button
+                    type="button"
+                    onClick={() => setPaymentMethod('CASH_ON_DELIVERY')}
+                    className={`w-full flex items-center gap-3 p-4 border-2 rounded-2xl transition-all ${
+                      paymentMethod === 'CASH_ON_DELIVERY'
+                        ? 'border-primary bg-primary/5'
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                      paymentMethod === 'CASH_ON_DELIVERY' ? 'border-primary' : 'border-gray-300'
+                    }`}>
+                      {paymentMethod === 'CASH_ON_DELIVERY' && (
+                        <div className="w-3 h-3 rounded-full bg-primary"></div>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2 flex-1">
+                      <Icon icon="mdi:cash" className="w-6 h-6 text-green-600" />
+                      <div className="text-left">
+                        <div className="font-semibold text-text-primary">Kapıda Nakit Ödeme</div>
+                        <div className="text-xs text-text-secondary">Siparişinizi teslim alırken nakit ödeme yapın</div>
+                      </div>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setPaymentMethod('CARD_ON_DELIVERY')}
+                    className={`w-full flex items-center gap-3 p-4 border-2 rounded-2xl transition-all ${
+                      paymentMethod === 'CARD_ON_DELIVERY'
+                        ? 'border-primary bg-primary/5'
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                      paymentMethod === 'CARD_ON_DELIVERY' ? 'border-primary' : 'border-gray-300'
+                    }`}>
+                      {paymentMethod === 'CARD_ON_DELIVERY' && (
+                        <div className="w-3 h-3 rounded-full bg-primary"></div>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2 flex-1">
+                      <Icon icon="mdi:credit-card" className="w-6 h-6 text-blue-600" />
+                      <div className="text-left">
+                        <div className="font-semibold text-text-primary">Kapıda Kredi Kartı</div>
+                        <div className="text-xs text-text-secondary">Siparişinizi teslim alırken kredi kartı ile ödeme yapın</div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+
               <button
                 onClick={handleCheckout}
                 disabled={loading}

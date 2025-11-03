@@ -34,6 +34,7 @@ model Order {
   items     OrderItem[]
   total     Float
   status    OrderStatus
+  paymentMethod PaymentMethod @default(CASH_ON_DELIVERY)
   customerName   String
   customerPhone  String
   customerAddress String
@@ -62,6 +63,11 @@ enum OrderStatus {
   SHIPPED
   DELIVERED
   CANCELLED
+}
+
+enum PaymentMethod {
+  CASH_ON_DELIVERY
+  CARD_ON_DELIVERY
 }
 
 model User {

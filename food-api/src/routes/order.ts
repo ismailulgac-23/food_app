@@ -131,7 +131,7 @@ router.get('/:id', authMiddleware as any, async (req: any, res) => {
 // POST /api/orders - Yeni sipariş oluştur
 router.post('/', authMiddleware as any, async (req: any, res) => {
   try {
-    const { items, total, customerName, customerPhone, customerAddress } = req.body;
+    const { items, total, customerName, customerPhone, customerAddress, paymentMethod } = req.body;
 
     if (!items || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({
@@ -178,6 +178,7 @@ router.post('/', authMiddleware as any, async (req: any, res) => {
       data: {
         total: Number(total),
         status: 'PENDING',
+        paymentMethod: paymentMethod || 'CASH_ON_DELIVERY',
         userId: req.userId,
         customerName: resolvedName,
         customerPhone: normalizedPhone,
@@ -222,9 +223,10 @@ router.post('/', authMiddleware as any, async (req: any, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { status, customerName, customerPhone, customerAddress } = req.body;
+    const { status, customerName, customerPhone, customerAddress, paymentMethod } = req.body;
 
     const validStatuses = ['PENDING', 'PROCESSING', 'SHIPPED', 'DELIVERED', 'CANCELLED'];
+    const validPaymentMethods = ['CASH_ON_DELIVERY', 'CARD_ON_DELIVERY'];
 
     const data: any = {};
     if (status !== undefined) {
@@ -232,6 +234,12 @@ router.put('/:id', async (req, res) => {
         return res.status(400).json({ success: false, error: 'Invalid status' });
       }
       data.status = status;
+    }
+    if (paymentMethod !== undefined) {
+      if (!validPaymentMethods.includes(paymentMethod)) {
+        return res.status(400).json({ success: false, error: 'Invalid payment method' });
+      }
+      data.paymentMethod = paymentMethod;
     }
     if (customerName !== undefined) {
       if (typeof customerName !== 'string' || customerName.trim().length < 3) {
