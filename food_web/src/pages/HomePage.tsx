@@ -47,34 +47,72 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Wrapper for Intro and Categories with responsive ordering */}
+      <div className="flex flex-col">
+        {/* Kategoriler Section - Mobilde önce, masaüstünde sonra */}
+        {categories.length > 0 && (
+          <section className="bg-white order-1 lg:order-2">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+              <div className="mb-6">
+                <div className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-xs font-semibold mb-2">Kategoriler</div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Alışveriş Kategorileri</h2>
+                <p className="text-gray-600 text-sm sm:text-base">İhtiyacınız olan her şey bir kategori uzağınızda</p>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                {categories.map((cat) => (
+                  <div
+                    key={cat.id}
+                    onClick={() => navigate(`/all?categoryId=${encodeURIComponent(cat.id)}`)}
+                    className="bg-white rounded-2xl border border-gray-200 hover:border-primary hover:shadow-lg transition cursor-pointer p-4 flex flex-col items-center gap-3"
+                  >
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-gray-50 flex items-center justify-center">
+                      {cat.imageUrl ? (
+                        <img
+                          src={getImageUrl(cat.imageUrl)}
+                          alt={cat.name}
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <span className="text-red-600 font-extrabold tracking-widest text-xs">UYMAR</span>
+                      )}
+                    </div>
+                    <div className="text-center">
+                      <div className="font-semibold text-gray-900 text-sm">{cat.name}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
-
-      {/* Intro / Hero */}
-      <section className="relative bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div>
-            <div className="inline-block bg-primary text-white px-3 py-1 rounded-full text-xs sm:text-sm font-semibold mb-4">Uymar Market</div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
-              Taze, Hızlı ve Güvenilir Market Alışverişi
-            </h1>
-            <p className="text-gray-600 text-base sm:text-lg mb-6">
-              Bölgenize özel fiyatlarla binlerce ürünü dakikalar içinde kapınıza getiriyoruz. Güvenli ödeme, anında destek ve uygun fiyat garantisi.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link to="/all" className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-xl font-semibold text-sm sm:text-base">Alışverişe Başla</Link>
+        {/* Intro / Hero - Mobilde sonra, masaüstünde önce */}
+        <section className="relative bg-white order-2 lg:order-1">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div>
+              <div className="inline-block bg-primary text-white px-3 py-1 rounded-full text-xs sm:text-sm font-semibold mb-4">Uymar Market</div>
+              <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+                Taze, Hızlı ve Güvenilir Market Alışverişi
+              </h1>
+              <p className="text-gray-600 text-base sm:text-lg mb-6">
+                Bölgenize özel fiyatlarla binlerce ürünü dakikalar içinde kapınıza getiriyoruz. Güvenli ödeme, anında destek ve uygun fiyat garantisi.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link to="/all" className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-xl font-semibold text-sm sm:text-base">Alışverişe Başla</Link>
+              </div>
+            </div>
+            <div className="order-first lg:order-0">
+              <div className="rounded-2xl overflow-hidden bg-gray-100 border border-gray-200">
+                <img
+                  src="https://media.istockphoto.com/id/1406885804/tr/foto%C4%9Fraf/a-shopping-cart-by-a-store-shelf-in-a-supermarket.jpg?s=612x612&w=0&k=20&c=N4Qei7JN0nph0NwSY-idqJw088QJHOkCliQOjK42b-w="
+                  alt="Market rafları ve ürünler"
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
           </div>
-          <div className="order-first lg:order-0">
-            <div className="rounded-2xl overflow-hidden bg-gray-100 border border-gray-200">
-              <img
-                src="https://media.istockphoto.com/id/1406885804/tr/foto%C4%9Fraf/a-shopping-cart-by-a-store-shelf-in-a-supermarket.jpg?s=612x612&w=0&k=20&c=N4Qei7JN0nph0NwSY-idqJw088QJHOkCliQOjK42b-w="
-                alt="Market rafları ve ürünler"
-                className="w-full h-full object-contain"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* Delivery fee banner */}
       <section className="bg-white">
@@ -135,42 +173,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Kategoriler Section */}
-      {categories.length > 0 && (
-        <section className="bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-            <div className="mb-6">
-              <div className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-xs font-semibold mb-2">Kategoriler</div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Alışveriş Kategorileri</h2>
-              <p className="text-gray-600 text-sm sm:text-base">İhtiyacınız olan her şey bir kategori uzağınızda</p>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {categories.map((cat) => (
-                <div
-                  key={cat.id}
-                  onClick={() => navigate(`/all?categoryId=${encodeURIComponent(cat.id)}`)}
-                  className="bg-white rounded-2xl border border-gray-200 hover:border-primary hover:shadow-lg transition cursor-pointer p-4 flex flex-col items-center gap-3"
-                >
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-gray-50 flex items-center justify-center">
-                    {cat.imageUrl ? (
-                      <img
-                        src={getImageUrl(cat.imageUrl)}
-                        alt={cat.name}
-                        className="w-full h-full object-contain"
-                      />
-                    ) : (
-                      <span className="text-red-600 font-extrabold tracking-widest text-xs">UYMAR</span>
-                    )}
-                  </div>
-                  <div className="text-center">
-                    <div className="font-semibold text-gray-900 text-sm">{cat.name}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+
 
       {/* Deals and Popular Sections */}
       <section className="bg-white">
