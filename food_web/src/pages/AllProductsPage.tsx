@@ -17,6 +17,7 @@ const AllProductsPage: React.FC = () => {
   const [pages, setPages] = useState(1);
   const { addToCart } = useCart();
   const [addedIds, setAddedIds] = useState<Set<string>>(new Set());
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false); // Mobilde collapsible için
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get('search') || '';
   const categoryId = new URLSearchParams(location.search).get('categoryId') || '';
@@ -30,6 +31,13 @@ const AllProductsPage: React.FC = () => {
       } catch { }
     })();
 
+    // categoryId varsa selectedCategory'yi set et
+    if (categoryId && !selectedCategory) {
+      setSelectedCategory(categoryId);
+    }
+  }, [categoryId]);
+
+  useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
@@ -99,7 +107,19 @@ const AllProductsPage: React.FC = () => {
         {categories.length > 0 && (
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold text-gray-900">Kategoriler</h2>
+              <div className="flex items-center gap-2">
+                <h2 className="text-xl font-semibold text-gray-900">Kategoriler</h2>
+                {/* Mobilde collapsible toggle butonu */}
+                <button
+                  onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
+                  className="md:hidden px-3 py-1 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 transition"
+                >
+                  <Icon 
+                    icon={isCategoriesOpen ? "mdi:chevron-up" : "mdi:chevron-down"} 
+                    className="w-5 h-5" 
+                  />
+                </button>
+              </div>
               {selectedCategory && (
                 <button
                   onClick={clearCategories}
@@ -110,31 +130,34 @@ const AllProductsPage: React.FC = () => {
                 </button>
               )}
             </div>
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
-              {categories.map(c => (
-                <button
-                  key={c.id}
-                  onClick={() => toggleCategory(c.id)}
-                  className={`flex flex-col items-center gap-3 p-4 rounded-2xl border-2 transition-all ${selectedCategory === c.id
-                    ? 'bg-primary text-white border-primary shadow-lg scale-105'
-                    : 'bg-white text-gray-700 border-gray-200 hover:border-primary hover:shadow-md'
-                    }`}
-                >
-                  <div className={`w-16 h-16 rounded-xl overflow-hidden flex items-center justify-center shrink-0 ${selectedCategory === c.id ? 'bg-white/20' : 'bg-gray-50'
-                    }`}>
-                    {c.imageUrl ? (
-                      <img
-                        src={getImageUrl(c.imageUrl)}
-                        alt={c.name}
-                        className="w-full h-full object-contain"
-                      />
-                    ) : (
-                      <span className="text-red-600 font-extrabold tracking-widest text-[10px]">UYMAR</span>
-                    )}
-                  </div>
-                  <span className="text-sm font-semibold text-center line-clamp-2">{c.name}</span>
-                </button>
-              ))}
+            {/* Mobilde collapsible, masaüstünde her zaman görünür */}
+            <div className={`${isCategoriesOpen ? 'block' : 'hidden'} md:block`}>
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
+                {categories.map(c => (
+                  <button
+                    key={c.id}
+                    onClick={() => toggleCategory(c.id)}
+                    className={`flex flex-col items-center gap-3 p-4 rounded-2xl border-2 transition-all ${selectedCategory === c.id
+                      ? 'bg-primary text-white border-primary shadow-lg scale-105'
+                      : 'bg-white text-gray-700 border-gray-200 hover:border-primary hover:shadow-md'
+                      }`}
+                  >
+                    <div className={`w-16 h-16 rounded-xl overflow-hidden flex items-center justify-center shrink-0 ${selectedCategory === c.id ? 'bg-white/20' : 'bg-gray-50'
+                      }`}>
+                      {c.imageUrl ? (
+                        <img
+                          src={getImageUrl(c.imageUrl)}
+                          alt={c.name}
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <span className="text-red-600 font-extrabold tracking-widest text-[10px]">UYMAR</span>
+                      )}
+                    </div>
+                    <span className="text-sm font-semibold text-center line-clamp-2">{c.name}</span>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         )}

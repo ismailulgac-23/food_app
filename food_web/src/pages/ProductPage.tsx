@@ -92,7 +92,7 @@ const ProductPage: React.FC = () => {
           <ol className="flex items-center space-x-2 text-sm text-text-secondary">
             <li><a href="/" className="hover:text-primary">Ana Sayfa</a></li>
             <li>/</li>
-            <li><a href={`/category/${product.category?.name?.toLowerCase().replace(/\s+/g, '-')}`} className="hover:text-primary">{product.category?.name || 'Kategori'}</a></li>
+            <li><a href={`/all?categoryId=${product.category?.id}`} className="hover:text-primary">{product.category?.name || 'Kategori'}</a></li>
             <li>/</li>
             <li className="text-text-primary">{product.name}</li>
           </ol>

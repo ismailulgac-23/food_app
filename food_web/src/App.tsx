@@ -6,7 +6,6 @@ import HomePage from './pages/HomePage';
 import AllProductsPage from './pages/AllProductsPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-import CategoryPage from './pages/CategoryPage';
 import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
 import ProfilePage from './pages/ProfilePage';
@@ -26,7 +25,6 @@ function App() {
             <main>
               <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/category/:categoryName" element={<CategoryPage />} />
                 <Route path="/all" element={<AllProductsPage />} />
                 <Route path="/product/:productId" element={<ProductPage />} />
                 <Route path="/cart" element={<CartPage />} />
