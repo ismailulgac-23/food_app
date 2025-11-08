@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import { CircleSpinner } from 'react-spinners-kit';
 import { categoryAPI, productAPI, getImageUrl } from '../services/api';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { toast } from 'react-hot-toast';
 
@@ -16,6 +16,7 @@ const AllProductsPage: React.FC = () => {
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
   const { addToCart } = useCart();
+  const navigate = useNavigate();
   const [addedIds, setAddedIds] = useState<Set<string>>(new Set());
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false); // Mobilde collapsible için
   const location = useLocation();
@@ -30,10 +31,16 @@ const AllProductsPage: React.FC = () => {
         setCategories(res.data.data || []);
       } catch { }
     })();
+  }, []);
 
-    // categoryId varsa selectedCategory'yi set et
-    if (categoryId && !selectedCategory) {
+  useEffect(() => {
+    // categoryId varsa selectedCategory'yi set et ve mobilde sidebar'ı aç
+    if (categoryId && selectedCategory !== categoryId) {
       setSelectedCategory(categoryId);
+      setIsCategoriesOpen(true); // Mobilde kategori seçildiğinde sidebar'ı aç
+    } else if (!categoryId && selectedCategory) {
+      // categoryId yoksa ama selectedCategory varsa, sadece URL'den geldiğinde temizleme
+      // (kullanıcı manuel seçim yapmadıysa)
     }
   }, [categoryId]);
 
@@ -59,10 +66,24 @@ const AllProductsPage: React.FC = () => {
   }, [page, searchQuery, categoryId, selectedCategory]);
 
   const toggleCategory = (id: string) => {
-    setSelectedCategory(prev => prev === id ? null : id);
+    const newCategory = selectedCategory === id ? null : id;
+    setSelectedCategory(newCategory);
+    // URL'i güncelle
+    const params = new URLSearchParams(location.search);
+    if (newCategory) {
+      params.set('categoryId', newCategory);
+    } else {
+      params.delete('categoryId');
+    }
+    navigate(`/all?${params.toString()}`, { replace: true });
   };
 
-  const clearCategories = () => setSelectedCategory(null);
+  const clearCategories = () => {
+    setSelectedCategory(null);
+    const params = new URLSearchParams(location.search);
+    params.delete('categoryId');
+    navigate(`/all?${params.toString()}`, { replace: true });
+  };
 
   const handleAdd = (p: any) => {
     addToCart(p);
@@ -96,73 +117,105 @@ const AllProductsPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen py-8">
+    <div className="min-h-screen py-8 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-text-primary">Tüm Ürünler</h1>
           <p className="text-text-secondary">Toplam {displayProducts.length} ürün</p>
         </div>
 
-        {/* Category filter chips/cards */}
-        {categories.length > 0 && (
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <h2 className="text-xl font-semibold text-gray-900">Kategoriler</h2>
-                {/* Mobilde collapsible toggle butonu */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          {/* Categories Sidebar */}
+          {categories.length > 0 && (
+            <aside className="lg:col-span-1">
+              {/* Mobilde collapsible header */}
+              <div className="lg:hidden mb-4">
                 <button
                   onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
-                  className="md:hidden px-3 py-1 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 transition"
+                  className="w-full flex items-center justify-between bg-white rounded-2xl border border-gray-200 p-4 hover:border-primary transition"
                 >
+                  <div className="flex items-center gap-2">
+                    <Icon icon="mdi:menu" className="w-5 h-5 text-gray-700" />
+                    <span className="font-semibold text-gray-900">Kategoriler</span>
+                    {selectedCategory && (
+                      <span className="bg-primary text-white text-xs px-2 py-1 rounded-full">
+                        {categories.find(c => c.id === selectedCategory)?.name}
+                      </span>
+                    )}
+                  </div>
                   <Icon 
                     icon={isCategoriesOpen ? "mdi:chevron-up" : "mdi:chevron-down"} 
-                    className="w-5 h-5" 
+                    className="w-5 h-5 text-gray-700" 
                   />
                 </button>
               </div>
-              {selectedCategory && (
-                <button
-                  onClick={clearCategories}
-                  className="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center gap-2 transition"
-                >
-                  <Icon icon="mdi:close" className="w-5 h-5" />
-                  <span className="text-sm font-medium">Filtreyi Temizle</span>
-                </button>
-              )}
-            </div>
-            {/* Mobilde collapsible, masaüstünde her zaman görünür */}
-            <div className={`${isCategoriesOpen ? 'block' : 'hidden'} md:block`}>
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
-                {categories.map(c => (
-                  <button
-                    key={c.id}
-                    onClick={() => toggleCategory(c.id)}
-                    className={`flex flex-col items-center gap-3 p-4 rounded-2xl border-2 transition-all ${selectedCategory === c.id
-                      ? 'bg-primary text-white border-primary shadow-lg scale-105'
-                      : 'bg-white text-gray-700 border-gray-200 hover:border-primary hover:shadow-md'
-                      }`}
-                  >
-                    <div className={`w-16 h-16 rounded-xl overflow-hidden flex items-center justify-center shrink-0 ${selectedCategory === c.id ? 'bg-white/20' : 'bg-gray-50'
-                      }`}>
-                      {c.imageUrl ? (
-                        <img
-                          src={getImageUrl(c.imageUrl)}
-                          alt={c.name}
-                          className="w-full h-full object-contain"
-                        />
-                      ) : (
-                        <span className="text-red-600 font-extrabold tracking-widest text-[10px]">UYMAR</span>
-                      )}
-                    </div>
-                    <span className="text-sm font-semibold text-center line-clamp-2">{c.name}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {/* Sidebar içeriği - Mobilde collapsible, masaüstünde her zaman görünür */}
+              <div className={`${isCategoriesOpen ? 'block' : 'hidden'} lg:block`}>
+                <div className="bg-white rounded-2xl border border-gray-200 p-4 lg:p-4 h-max">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="font-semibold text-gray-900">Hızlı Erişim</div>
+                    {selectedCategory && (
+                      <button
+                        onClick={clearCategories}
+                        className="lg:hidden px-2 py-1 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 transition"
+                        title="Filtreyi Temizle"
+                      >
+                        <Icon icon="mdi:close" className="w-4 h-4" />
+                      </button>
+                    )}
+                  </div>
+                  <ul className="space-y-2">
+                    {categories.map((c) => (
+                      <li 
+                        key={c.id} 
+                        className={`flex items-center gap-3 text-sm sm:text-base rounded-lg p-2 cursor-pointer transition ${
+                          selectedCategory === c.id
+                            ? 'bg-primary text-white hover:bg-primary-dark'
+                            : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+                        }`}
+                        onClick={() => toggleCategory(c.id)}
+                      >
+                        <div className={`w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center shrink-0 ${
+                          selectedCategory === c.id ? 'bg-white/20' : 'bg-gray-50'
+                        }`}>
+                          {c.imageUrl ? (
+                            <img
+                              src={getImageUrl(c.imageUrl)}
+                              alt={c.name}
+                              className="w-full h-full object-contain"
+                            />
+                          ) : (
+                            <span className="text-red-600 font-extrabold tracking-widest text-[8px]">UYMAR</span>
+                          )}
+                        </div>
+                        <span className="flex-1 font-medium">{c.name}</span>
+                        {selectedCategory === c.id && (
+                          <Icon icon="mdi:check-circle" className="w-5 h-5 shrink-0" />
+                        )}
+                        {selectedCategory !== c.id && (
+                          <Icon icon="mdi:chevron-right" className="w-4 h-4 shrink-0" />
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                  {selectedCategory && (
+                    <button
+                      onClick={clearCategories}
+                      className="hidden lg:flex mt-4 w-full items-center justify-center gap-2 px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 transition"
+                    >
+                      <Icon icon="mdi:close" className="w-4 h-4" />
+                      <span className="text-sm font-medium">Filtreyi Temizle</span>
+                    </button>
+                  )}
+                </div>
+              </div>
+            </aside>
+          )}
+
+          {/* Products Grid */}
+          <div className="lg:col-span-3">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {displayProducts.map((product) => (
             <div
               key={product.id}
@@ -206,15 +259,17 @@ const AllProductsPage: React.FC = () => {
               </div>
             </div>
           ))}
-        </div>
+            </div>
 
-        {pages > 1 && (
-          <div className="mt-8 flex items-center justify-center gap-2">
-            <button onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1} className="px-4 py-2 rounded-lg border border-gray-300 disabled:opacity-50">Önceki</button>
-            <span className="px-3 py-2 text-sm text-gray-600">Sayfa {page} / {pages}</span>
-            <button onClick={() => setPage((p) => Math.min(pages, p + 1))} disabled={page === pages} className="px-4 py-2 rounded-lg border border-gray-300 disabled:opacity-50">Sonraki</button>
+            {pages > 1 && (
+              <div className="mt-8 flex items-center justify-center gap-2">
+                <button onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1} className="px-4 py-2 rounded-lg border border-gray-300 disabled:opacity-50">Önceki</button>
+                <span className="px-3 py-2 text-sm text-gray-600">Sayfa {page} / {pages}</span>
+                <button onClick={() => setPage((p) => Math.min(pages, p + 1))} disabled={page === pages} className="px-4 py-2 rounded-lg border border-gray-300 disabled:opacity-50">Sonraki</button>
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
