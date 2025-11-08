@@ -37,7 +37,7 @@ const AllProductsPage: React.FC = () => {
     // categoryId varsa selectedCategory'yi set et ve mobilde sidebar'ı aç
     if (categoryId && selectedCategory !== categoryId) {
       setSelectedCategory(categoryId);
-      setIsCategoriesOpen(true); // Mobilde kategori seçildiğinde sidebar'ı aç
+      
     } else if (!categoryId && selectedCategory) {
       // categoryId yoksa ama selectedCategory varsa, sadece URL'den geldiğinde temizleme
       // (kullanıcı manuel seçim yapmadıysa)
