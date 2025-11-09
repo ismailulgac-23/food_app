@@ -68,6 +68,10 @@ const AllProductsPage: React.FC = () => {
   const toggleCategory = (id: string) => {
     const newCategory = selectedCategory === id ? null : id;
     setSelectedCategory(newCategory);
+    // Mobilde kategori seçildiğinde sidebar'ı kapat
+    if (newCategory) {
+      setIsCategoriesOpen(false);
+    }
     // URL'i güncelle
     const params = new URLSearchParams(location.search);
     if (newCategory) {
